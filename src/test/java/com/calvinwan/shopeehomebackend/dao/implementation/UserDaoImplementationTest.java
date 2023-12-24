@@ -15,7 +15,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UserDaoImplementationTest {
+public class UserDaoImplementationTest {
 
     @Autowired
     private UserDao userDao;

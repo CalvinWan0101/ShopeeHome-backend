@@ -1,6 +1,7 @@
 package com.calvinwan.shopeehomebackend.service.implementation;
 
 import com.calvinwan.shopeehomebackend.dto.UserDto;
+import com.calvinwan.shopeehomebackend.dto.UserLoginDto;
 import com.calvinwan.shopeehomebackend.model.User;
 import com.calvinwan.shopeehomebackend.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UserServiceImplementationTest {
+public class UserServiceImplementationTest {
 
     @Autowired
     private UserService userService;
@@ -105,5 +106,45 @@ class UserServiceImplementationTest {
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
 
         assertNull(user);
+    }
+
+    @Test
+    public void login_success() {
+        UserLoginDto userLoginDto = new UserLoginDto();
+        userLoginDto.setEmail("calvin@gmail.com");
+        userLoginDto.setPassword("calvin");
+
+        User user = userService.login(userLoginDto);
+        String hashedPassword = DigestUtils.md5DigestAsHex("calvin".getBytes());
+
+        assertNotNull(user);
+        assertEquals("74244e64-73a8-46a7-ac69-4b20efab0d82", user.getId());
+        assertEquals("Calvin", user.getName());
+        assertEquals("calvin@gmail.com", user.getEmail());
+        assertEquals("0909000111", user.getPhoneNumber());
+        assertEquals(hashedPassword, user.getPassword());
+        assertEquals(List.of("address-calvin-A"), user.getAddresses());
+    }
+
+    @Test
+    public void login_with_not_exist_email() {
+        UserLoginDto userLoginDto = new UserLoginDto();
+        userLoginDto.setEmail("wrong@gmail.com");
+        userLoginDto.setPassword("wrong");
+
+        assertThrows(ResponseStatusException.class, () -> {
+            userService.login(userLoginDto);
+        });
+    }
+
+    @Test
+    public void login_with_wrong_password() {
+        UserLoginDto userLoginDto = new UserLoginDto();
+        userLoginDto.setEmail("calvin@gmail.com");
+        userLoginDto.setPassword("wrong");
+
+        assertThrows(ResponseStatusException.class, () -> {
+            userService.login(userLoginDto);
+        });
     }
 }

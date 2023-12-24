@@ -19,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @Transactional
-    void register() throws Exception {
+    public void register() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/user/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -49,7 +49,7 @@ class UserControllerTest {
     }
 
     @Test
-    void get_by_id() throws Exception {
+    public void get_by_id() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/user/30e7e267-c791-424a-a94b-fa5e695d27e7");
 
@@ -67,7 +67,7 @@ class UserControllerTest {
 
     @Test
     @Transactional
-    void updateById() throws Exception {
+    public void updateById() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .put("/user/30e7e267-c791-424a-a94b-fa5e695d27e7")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -98,7 +98,7 @@ class UserControllerTest {
 
     @Test
     @Transactional
-    void delete_by_id() throws Exception {
+    public void delete_by_id() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .delete("/user/8b3d52ee-578a-4635-a877-1aefdcfc4fae");
 
@@ -108,7 +108,7 @@ class UserControllerTest {
     }
 
     @Test
-    void login() throws Exception {
+    public void login_success() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/user/login")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -122,4 +122,38 @@ class UserControllerTest {
                 .andExpect(status().is(200))
                 .andReturn();
     }
+
+    @Test
+    public void login_with_not_exist_email() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/user/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "email": "wrong@gmail.com",
+                        "password": "calvin"
+                        }""");
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(400))
+                .andReturn();
+    }
+
+    @Test
+    public void login_with_wrong_password() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/user/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "email": "calvin@gmail.com",
+                        "password": "wrong"
+                        }""");
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(400))
+                .andReturn();
+    }
+
 }
