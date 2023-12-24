@@ -3,6 +3,8 @@ package com.calvinwan.shopeehomebackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public class User {
 
     private String id;
@@ -12,6 +14,8 @@ public class User {
 
     @JsonIgnore
     private String password;
+
+    private List<String> addresses;
 
     public User(String id, String name, String email, String phoneNumber, String password) {
         this.id = id;
@@ -59,5 +63,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
     }
 }

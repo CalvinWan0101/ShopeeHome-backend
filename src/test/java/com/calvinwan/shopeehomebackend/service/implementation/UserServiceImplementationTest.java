@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -22,6 +24,7 @@ class UserServiceImplementationTest {
     public void get_by_id() {
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
+        List<String> addresses = List.of("address-test1-A", "address-test1-B", "address-test1-C");
 
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
@@ -29,6 +32,7 @@ class UserServiceImplementationTest {
         assertEquals("test1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
+        assertEquals(addresses, user.getAddresses());
     }
 
     @Test
@@ -38,7 +42,8 @@ class UserServiceImplementationTest {
                 "test100",
                 "test100@gmail.com",
                 "0909100100",
-                "test100"
+                "test100",
+                List.of("address-test100-A", "address-test100-B", "address-test100-C")
         );
 
         String hashedPassword = DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes());
@@ -51,6 +56,7 @@ class UserServiceImplementationTest {
         assertEquals("test100@gmail.com", user.getEmail());
         assertEquals("0909100100", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
+        assertEquals(userDto.getAddresses(), user.getAddresses());
     }
 
     @Test
@@ -60,7 +66,8 @@ class UserServiceImplementationTest {
                 "test100",
                 "test1@gmail.com",
                 "0909100100",
-                "test100"
+                "test100",
+                List.of("address-test100-A", "address-test100-B", "address-test100-C")
         );
 
         assertThrows(ResponseStatusException.class, () -> {
@@ -75,7 +82,8 @@ class UserServiceImplementationTest {
                 "Calvin",
                 "calvin@gmail.com",
                 "0909001001",
-                "newpassword"
+                "newpassword",
+                List.of("address-calvin-A", "address-calvin-B", "address-calvin-C")
         );
 
         userService.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
@@ -87,6 +95,7 @@ class UserServiceImplementationTest {
         assertEquals("calvin@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals("newpassword", user.getPassword());
+        assertEquals(List.of("address-calvin-A", "address-calvin-B", "address-calvin-C"), user.getAddresses());
     }
 
     @Test

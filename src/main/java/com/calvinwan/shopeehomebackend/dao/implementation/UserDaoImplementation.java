@@ -30,6 +30,15 @@ public class UserDaoImplementation implements UserDao {
         map.put("password", userDto.getPassword());
         jdbcTemplate.update(sql, map);
 
+        List<String> addresses = userDto.getAddresses();
+        String sqlAddress = "INSERT INTO user_address (user_id, address) VALUES (:id, :address)";
+        for (String address : addresses) {
+            Map<String, Object> mapAddress = new HashMap<>();
+            mapAddress.put("id", map.get("id"));
+            mapAddress.put("address", address);
+            jdbcTemplate.update(sqlAddress, mapAddress);
+        }
+
         return (String) map.get("id");
     }
 
@@ -42,7 +51,13 @@ public class UserDaoImplementation implements UserDao {
         if (users.isEmpty()) {
             return null;
         }
-        return users.get(0);
+        User user = users.get(0);
+
+        String sqlAddress = "SELECT address FROM user_address WHERE user_id = :id";
+        List<String> addresses = jdbcTemplate.queryForList(sqlAddress, map, String.class);
+        user.setAddresses(addresses);
+
+        return user;
     }
 
     @Override
@@ -54,7 +69,14 @@ public class UserDaoImplementation implements UserDao {
         if (users.isEmpty()) {
             return null;
         }
-        return users.get(0);
+        User user = users.get(0);
+
+        String sqlAddress = "SELECT address FROM user_address WHERE user_id = :id";
+        map.put("id", user.getId());
+        List<String> addresses = jdbcTemplate.queryForList(sqlAddress, map, String.class);
+        user.setAddresses(addresses);
+
+        return user;
     }
 
     @Override
@@ -67,10 +89,28 @@ public class UserDaoImplementation implements UserDao {
         map.put("phoneNumber", userDto.getPhoneNumber());
         map.put("password", userDto.getPassword());
         jdbcTemplate.update(sql, map);
+
+        List<String> addresses = userDto.getAddresses();
+
+        String sqlDeleteAddress = "DELETE FROM user_address WHERE user_id = :id";
+        jdbcTemplate.update(sqlDeleteAddress, map);
+
+        for (String address : addresses) {
+            String sqlAddress = "INSERT INTO user_address (user_id, address) VALUES (:id, :address)";
+            Map<String, Object> mapAddress = new HashMap<>();
+            mapAddress.put("id", userId);
+            mapAddress.put("address", address);
+            jdbcTemplate.update(sqlAddress, mapAddress);
+        }
     }
 
     @Override
     public void deleteById(String userId) {
+        String sqlAddress = "DELETE FROM user_address WHERE user_id = :id";
+        Map<String, Object> mapAddress = new HashMap<>();
+        mapAddress.put("id", userId);
+        jdbcTemplate.update(sqlAddress, mapAddress);
+
         String sql = "DELETE FROM myuser WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", userId);

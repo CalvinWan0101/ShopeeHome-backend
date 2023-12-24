@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +35,12 @@ class UserControllerTest {
                           "name": "John",
                           "email": "john@gmail.com",
                           "phoneNumber": "0909000123",
-                          "password": "john"
+                          "password": "john",
+                          "addresses":[
+                            "address-test1-A",
+                            "address-test1-B",
+                            "address-test1-C"
+                            ]
                         }""");
 
         mockMvc.perform(requestBuilder)
@@ -52,6 +59,9 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.name").value("test1"))
                 .andExpect(jsonPath("$.email").value("test1@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909001001"))
+                .andExpect(jsonPath("$.addresses[0]").value("address-test1-A"))
+                .andExpect(jsonPath("$.addresses[1]").value("address-test1-B"))
+                .andExpect(jsonPath("$.addresses[2]").value("address-test1-C"))
                 .andReturn();
     }
 
@@ -66,7 +76,12 @@ class UserControllerTest {
                           "name": "Calvin",
                           "email": "calvin@gmail.com",
                           "phoneNumber": "0909000111",
-                          "password": "calvin"
+                          "password": "calvin",
+                          "addresses":[
+                            "address-calvin-A",
+                            "address-calvin-B",
+                            "address-calvin-C"
+                            ]
                         }""");
 
         mockMvc.perform(requestBuilder)
@@ -75,6 +90,9 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.name").value("Calvin"))
                 .andExpect(jsonPath("$.email").value("calvin@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909000111"))
+                .andExpect(jsonPath("$.addresses[0]").value("address-calvin-A"))
+                .andExpect(jsonPath("$.addresses[1]").value("address-calvin-B"))
+                .andExpect(jsonPath("$.addresses[2]").value("address-calvin-C"))
                 .andReturn();
     }
 

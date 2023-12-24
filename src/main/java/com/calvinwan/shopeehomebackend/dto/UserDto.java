@@ -3,6 +3,8 @@ package com.calvinwan.shopeehomebackend.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 public class UserDto {
 
     @NotNull
@@ -17,11 +19,14 @@ public class UserDto {
     @NotNull
     private String password;
 
-    public UserDto(String name, String email, String phoneNumber, String password) {
+    private List<String> addresses;
+
+    public UserDto(String name, String email, String phoneNumber, String password, List<String> addresses) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.addresses = addresses;
     }
 
     public String getName() {
@@ -54,5 +59,13 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
     }
 }
