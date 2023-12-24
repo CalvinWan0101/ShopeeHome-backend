@@ -6,12 +6,14 @@ import com.calvinwan.shopeehomebackend.service.AdminService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Sql(scripts = "/database/data.sql")
 public class AdminServiceImplementationTest {
 
     @Autowired
