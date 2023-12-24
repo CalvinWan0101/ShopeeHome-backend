@@ -21,13 +21,14 @@ class UserServiceImplementationTest {
     @Test
     public void get_by_id() {
         User user = userService.getById("UUID-1");
+        String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
 
         assertNotNull(user);
         assertEquals("UUID-1", user.getId());
         assertEquals("test1", user.getName());
         assertEquals("test1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
-        assertEquals("test1", user.getPassword());
+        assertEquals(hashedPassword, user.getPassword());
     }
 
     @Test
