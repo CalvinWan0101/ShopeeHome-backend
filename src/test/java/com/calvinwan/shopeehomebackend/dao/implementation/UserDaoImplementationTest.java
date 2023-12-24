@@ -21,11 +21,11 @@ class UserDaoImplementationTest {
 
     @Test
     public void get_by_id() {
-        User user = userDao.getById("UUID-1");
+        User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
 
         assertNotNull(user);
-        assertEquals("UUID-1", user.getId());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("test1", user.getName());
         assertEquals("test1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
@@ -38,7 +38,7 @@ class UserDaoImplementationTest {
         String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
 
         assertNotNull(user);
-        assertEquals("UUID-1", user.getId());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("test1", user.getName());
         assertEquals("test1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
@@ -76,11 +76,11 @@ class UserDaoImplementationTest {
                 "newpassword"
         );
 
-        userDao.updateById("UUID-1", userDto);
+        userDao.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
 
-        User user = userDao.getById("UUID-1");
+        User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         assertNotNull(user);
-        assertEquals("UUID-1", user.getId());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("Calvin", user.getName());
         assertEquals("calvin@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
@@ -90,8 +90,8 @@ class UserDaoImplementationTest {
     @Test
     @Transactional
     public void delete_by_id() {
-        userDao.deleteById("UUID-1");
-        User user = userDao.getById("UUID-1");
+        userDao.deleteById("30e7e267-c791-424a-a94b-fa5e695d27e7");
+        User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
 
         assertNull(user);
     }

@@ -44,11 +44,11 @@ class UserControllerTest {
     @Test
     void get_by_id() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/user/UUID-1");
+                .get("/user/30e7e267-c791-424a-a94b-fa5e695d27e7");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
-                .andExpect(jsonPath("$.id").value("UUID-1"))
+                .andExpect(jsonPath("$.id").value("30e7e267-c791-424a-a94b-fa5e695d27e7"))
                 .andExpect(jsonPath("$.name").value("test1"))
                 .andExpect(jsonPath("$.email").value("test1@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909001001"))
@@ -59,7 +59,7 @@ class UserControllerTest {
     @Transactional
     void updateById() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .put("/user/UUID-1")
+                .put("/user/30e7e267-c791-424a-a94b-fa5e695d27e7")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -71,7 +71,7 @@ class UserControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
-                .andExpect(jsonPath("$.id").value("UUID-1"))
+                .andExpect(jsonPath("$.id").value("30e7e267-c791-424a-a94b-fa5e695d27e7"))
                 .andExpect(jsonPath("$.name").value("Calvin"))
                 .andExpect(jsonPath("$.email").value("calvin@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909000111"))

@@ -20,11 +20,11 @@ class UserServiceImplementationTest {
 
     @Test
     public void get_by_id() {
-        User user = userService.getById("UUID-1");
+        User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
 
         assertNotNull(user);
-        assertEquals("UUID-1", user.getId());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("test1", user.getName());
         assertEquals("test1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
@@ -78,11 +78,11 @@ class UserServiceImplementationTest {
                 "newpassword"
         );
 
-        userService.updateById("UUID-1", userDto);
+        userService.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
 
-        User user = userService.getById("UUID-1");
+        User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         assertNotNull(user);
-        assertEquals("UUID-1", user.getId());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("Calvin", user.getName());
         assertEquals("calvin@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
@@ -92,8 +92,8 @@ class UserServiceImplementationTest {
     @Test
     @Transactional
     public void delete_by_id() {
-        userService.deleteById("UUID-1");
-        User user = userService.getById("UUID-1");
+        userService.deleteById("30e7e267-c791-424a-a94b-fa5e695d27e7");
+        User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
 
         assertNull(user);
     }
