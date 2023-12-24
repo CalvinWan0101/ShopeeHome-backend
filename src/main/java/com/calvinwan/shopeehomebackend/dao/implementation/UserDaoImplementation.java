@@ -80,10 +80,10 @@ public class UserDaoImplementation implements UserDao {
     }
 
     @Override
-    public void updateById(String userId, UserDto userDto) {
+    public void updateById(String id, UserDto userDto) {
         String sql = "UPDATE myuser SET name = :name, email = :email, phone_number = :phoneNumber, password = :password WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
-        map.put("id", userId);
+        map.put("id", id);
         map.put("name", userDto.getName());
         map.put("email", userDto.getEmail());
         map.put("phoneNumber", userDto.getPhoneNumber());
@@ -98,7 +98,7 @@ public class UserDaoImplementation implements UserDao {
         for (String address : addresses) {
             String sqlAddress = "INSERT INTO user_address (user_id, address) VALUES (:id, :address)";
             Map<String, Object> mapAddress = new HashMap<>();
-            mapAddress.put("id", userId);
+            mapAddress.put("id", id);
             mapAddress.put("address", address);
             jdbcTemplate.update(sqlAddress, mapAddress);
         }

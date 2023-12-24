@@ -6,11 +6,11 @@ import com.calvinwan.shopeehomebackend.model.User;
 public interface UserDao {
     public String insert(UserDto userDto);
 
-    User getById(String userId);
+    User getById(String id);
 
     User getByEmail(String email);
 
-    void updateById(String userId, UserDto userDto);
+    void updateById(String id, UserDto userDto);
 
     void deleteById(String userId);
 }
