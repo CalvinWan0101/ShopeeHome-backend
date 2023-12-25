@@ -1,8 +1,11 @@
 package com.calvinwan.shopeehomebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Admin {
     String id;
     String name;
+    @JsonIgnore
     String password;
 
     public Admin(String id, String name, String password) {

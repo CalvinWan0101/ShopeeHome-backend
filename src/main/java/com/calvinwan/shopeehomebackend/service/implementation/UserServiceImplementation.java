@@ -45,7 +45,8 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public void updateById(String id, UserDto userDto) {
-        userDto.setDeleted(false);
+        String hashedPassword = DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes());
+        userDto.setPassword(hashedPassword);
         userDao.updateById(id, userDto);
     }
 

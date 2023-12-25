@@ -96,10 +96,11 @@ public class UserServiceImplementationTest {
         userService.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
 
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
+        String hashedPassword = DigestUtils.md5DigestAsHex("userNew".getBytes());
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
         assertEquals("userNew@gmail.com", user.getEmail());
-        assertEquals("userNew", user.getPassword());
+        assertEquals(hashedPassword, user.getPassword());
         assertEquals("userNew", user.getName());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"), user.getAddresses());
