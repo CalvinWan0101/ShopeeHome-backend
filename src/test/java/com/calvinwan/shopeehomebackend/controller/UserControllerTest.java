@@ -58,12 +58,12 @@ public class UserControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.id").value("30e7e267-c791-424a-a94b-fa5e695d27e7"))
-                .andExpect(jsonPath("$.name").value("test1"))
-                .andExpect(jsonPath("$.email").value("test1@gmail.com"))
+                .andExpect(jsonPath("$.name").value("user1"))
+                .andExpect(jsonPath("$.email").value("user1@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909001001"))
-                .andExpect(jsonPath("$.addresses[0]").value("address-test1-A"))
-                .andExpect(jsonPath("$.addresses[1]").value("address-test1-B"))
-                .andExpect(jsonPath("$.addresses[2]").value("address-test1-C"))
+                .andExpect(jsonPath("$.addresses[0]").value("address-user1-A"))
+                .andExpect(jsonPath("$.addresses[1]").value("address-user1-B"))
+                .andExpect(jsonPath("$.addresses[2]").value("address-user1-C"))
                 .andReturn();
     }
 
@@ -116,8 +116,8 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "email": "calvin@gmail.com",
-                        "password": "calvin"
+                        "email": "user1@gmail.com",
+                        "password": "user1"
                         }""");
 
         mockMvc.perform(requestBuilder)
@@ -133,7 +133,7 @@ public class UserControllerTest {
                 .content("""
                         {
                         "email": "wrong@gmail.com",
-                        "password": "calvin"
+                        "password": "user1"
                         }""");
 
         mockMvc.perform(requestBuilder)
@@ -149,7 +149,7 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
-                        "email": "calvin@gmail.com",
+                        "email": "user1@gmail.com",
                         "password": "wrong"
                         }""");
 

@@ -21,13 +21,14 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public String insert(UserDto userDto) {
-        String sql = "INSERT INTO myuser (id, name, email, phone_number, password) VALUES (:id, :name, :email, :phoneNumber, :password)";
+        String sql = "INSERT INTO myuser (id, email, password, name, phone_number, is_deleted) VALUES (:id, :email, :password, :name, :phoneNumber, :isDeleted)";
         Map<String, Object> map = new HashMap<>();
         map.put("id", UUID.randomUUID().toString());
-        map.put("name", userDto.getName());
         map.put("email", userDto.getEmail());
-        map.put("phoneNumber", userDto.getPhoneNumber());
         map.put("password", userDto.getPassword());
+        map.put("name", userDto.getName());
+        map.put("phoneNumber", userDto.getPhoneNumber());
+        map.put("isDeleted", userDto.isDeleted());
         jdbcTemplate.update(sql, map);
 
         List<String> addresses = userDto.getAddresses();
@@ -44,7 +45,7 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public User getById(String id) {
-        String sql = "SELECT id, name, email, phone_number, password FROM myuser WHERE id = :id";
+        String sql = "SELECT id, email, password, name, phone_number, is_deleted FROM myuser WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         List<User> users = jdbcTemplate.query(sql, map, new UserRowMapper());
@@ -62,7 +63,7 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public User getByEmail(String email) {
-        String sql = "SELECT id, name, email, phone_number, password FROM myuser WHERE email = :email";
+        String sql = "SELECT id, email, password, name, phone_number, is_deleted FROM myuser WHERE email = :email";
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
         List<User> users = jdbcTemplate.query(sql, map, new UserRowMapper());
@@ -81,13 +82,14 @@ public class UserDaoImplementation implements UserDao {
 
     @Override
     public void updateById(String id, UserDto userDto) {
-        String sql = "UPDATE myuser SET name = :name, email = :email, phone_number = :phoneNumber, password = :password WHERE id = :id";
+        String sql = "UPDATE myuser SET email = :email, password = :password, name = :name, phone_number = :phoneNumber, is_deleted = :isDeleted WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
-        map.put("name", userDto.getName());
         map.put("email", userDto.getEmail());
-        map.put("phoneNumber", userDto.getPhoneNumber());
         map.put("password", userDto.getPassword());
+        map.put("name", userDto.getName());
+        map.put("phoneNumber", userDto.getPhoneNumber());
+        map.put("isDeleted", userDto.isDeleted());
         jdbcTemplate.update(sql, map);
 
         List<String> addresses = userDto.getAddresses();
@@ -102,18 +104,5 @@ public class UserDaoImplementation implements UserDao {
             mapAddress.put("address", address);
             jdbcTemplate.update(sqlAddress, mapAddress);
         }
-    }
-
-    @Override
-    public void deleteById(String userId) {
-        String sqlAddress = "DELETE FROM user_address WHERE user_id = :id";
-        Map<String, Object> mapAddress = new HashMap<>();
-        mapAddress.put("id", userId);
-        jdbcTemplate.update(sqlAddress, mapAddress);
-
-        String sql = "DELETE FROM myuser WHERE id = :id";
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", userId);
-        jdbcTemplate.update(sql, map);
     }
 }

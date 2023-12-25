@@ -6,35 +6,24 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public class UserDto {
-
-    @NotNull
-    private String name;
-
     @NotNull
     @Email
     private String email;
-
-    private String phoneNumber;
-
     @NotNull
     private String password;
-
+    @NotNull
+    private String name;
+    private String phoneNumber;
     private List<String> addresses;
+    private boolean isDeleted;
 
-    public UserDto(String name, String email, String phoneNumber, String password, List<String> addresses) {
-        this.name = name;
+    public UserDto(String email, String password, String name, String phoneNumber, List<String> addresses, boolean isDeleted) {
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.password = password;
-        this.addresses = addresses;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.addresses = addresses;
+        this.isDeleted = isDeleted;
     }
 
     public String getEmail() {
@@ -45,14 +34,6 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -61,11 +42,35 @@ public class UserDto {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public List<String> getAddresses() {
         return addresses;
     }
 
     public void setAddresses(List<String> addresses) {
         this.addresses = addresses;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }

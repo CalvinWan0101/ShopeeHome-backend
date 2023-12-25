@@ -8,9 +8,13 @@ public class UserLoginDto {
     @NotNull
     @Email
     private String email;
-
     @NotNull
     private String password;
+
+    public UserLoginDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;

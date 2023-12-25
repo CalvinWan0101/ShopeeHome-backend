@@ -26,13 +26,13 @@ public class UserServiceImplementationTest {
     @Test
     public void get_by_id() {
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
-        String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
-        List<String> addresses = List.of("address-test1-A", "address-test1-B", "address-test1-C");
+        String hashedPassword = DigestUtils.md5DigestAsHex("user1".getBytes());
+        List<String> addresses = List.of("address-user1-A", "address-user1-B", "address-user1-C");
 
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
-        assertEquals("test1", user.getName());
-        assertEquals("test1@gmail.com", user.getEmail());
+        assertEquals("user1", user.getName());
+        assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
@@ -42,11 +42,12 @@ public class UserServiceImplementationTest {
     @Transactional
     public void insert() {
         UserDto userDto = new UserDto(
-                "test100",
-                "test100@gmail.com",
-                "0909100100",
-                "test100",
-                List.of("address-test100-A", "address-test100-B", "address-test100-C")
+                "user87@gmail.com",
+                "user87",
+                "user87",
+                "0909877877",
+                List.of("address-user87-A", "address-user87-B", "address-user87-C"),
+                false
         );
 
         String hashedPassword = DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes());
@@ -55,22 +56,24 @@ public class UserServiceImplementationTest {
         User user = userService.getById(id);
         assertNotNull(user);
         assertEquals(id, user.getId());
-        assertEquals("test100", user.getName());
-        assertEquals("test100@gmail.com", user.getEmail());
-        assertEquals("0909100100", user.getPhoneNumber());
+        assertEquals("user87@gmail.com", user.getEmail());
         assertEquals(hashedPassword, user.getPassword());
-        assertEquals(userDto.getAddresses(), user.getAddresses());
+        assertEquals("user87", user.getName());
+        assertEquals("0909877877", user.getPhoneNumber());
+        assertEquals(List.of("address-user87-A", "address-user87-B", "address-user87-C"), user.getAddresses());
+        assertFalse(user.isDeleted());
     }
 
     @Test
     @Transactional
     public void insert_with_exist_email() {
         UserDto userDto = new UserDto(
-                "test100",
-                "test1@gmail.com",
-                "0909100100",
-                "test100",
-                List.of("address-test100-A", "address-test100-B", "address-test100-C")
+                "user1@gmail.com",
+                "user87",
+                "user87",
+                "0909877877",
+                List.of("address-user87-A", "address-user87-B", "address-user87-C"),
+                false
         );
 
         assertThrows(ResponseStatusException.class, () -> {
@@ -82,11 +85,12 @@ public class UserServiceImplementationTest {
     @Transactional
     public void update_by_id() {
         UserDto userDto = new UserDto(
-                "Calvin",
-                "calvin@gmail.com",
+                "userNew@gmail.com",
+                "userNew",
+                "userNew",
                 "0909001001",
-                "newpassword",
-                List.of("address-calvin-A", "address-calvin-B", "address-calvin-C")
+                List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"),
+                false
         );
 
         userService.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
@@ -94,11 +98,12 @@ public class UserServiceImplementationTest {
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
-        assertEquals("Calvin", user.getName());
-        assertEquals("calvin@gmail.com", user.getEmail());
+        assertEquals("userNew@gmail.com", user.getEmail());
+        assertEquals("userNew", user.getPassword());
+        assertEquals("userNew", user.getName());
         assertEquals("0909001001", user.getPhoneNumber());
-        assertEquals("newpassword", user.getPassword());
-        assertEquals(List.of("address-calvin-A", "address-calvin-B", "address-calvin-C"), user.getAddresses());
+        assertEquals(List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"), user.getAddresses());
+        assertFalse(user.isDeleted());
     }
 
     @Test
@@ -107,32 +112,29 @@ public class UserServiceImplementationTest {
         userService.deleteById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         User user = userService.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
 
-        assertNull(user);
+        assertTrue(user.isDeleted());
     }
 
     @Test
     public void login_success() {
-        UserLoginDto userLoginDto = new UserLoginDto();
-        userLoginDto.setEmail("calvin@gmail.com");
-        userLoginDto.setPassword("calvin");
+        UserLoginDto userLoginDto = new UserLoginDto("user1@gmail.com", "user1");
 
         User user = userService.login(userLoginDto);
-        String hashedPassword = DigestUtils.md5DigestAsHex("calvin".getBytes());
 
+        String hashedPassword = DigestUtils.md5DigestAsHex("user1".getBytes());
+        List<String> addresses = List.of("address-user1-A", "address-user1-B", "address-user1-C");
         assertNotNull(user);
-        assertEquals("74244e64-73a8-46a7-ac69-4b20efab0d82", user.getId());
-        assertEquals("Calvin", user.getName());
-        assertEquals("calvin@gmail.com", user.getEmail());
-        assertEquals("0909000111", user.getPhoneNumber());
+        assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
+        assertEquals("user1", user.getName());
+        assertEquals("user1@gmail.com", user.getEmail());
+        assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
-        assertEquals(List.of("address-calvin-A"), user.getAddresses());
+        assertEquals(addresses, user.getAddresses());
     }
 
     @Test
     public void login_with_not_exist_email() {
-        UserLoginDto userLoginDto = new UserLoginDto();
-        userLoginDto.setEmail("wrong@gmail.com");
-        userLoginDto.setPassword("wrong");
+        UserLoginDto userLoginDto = new UserLoginDto("wrong@gmail.com", "user1");
 
         assertThrows(ResponseStatusException.class, () -> {
             userService.login(userLoginDto);
@@ -141,9 +143,7 @@ public class UserServiceImplementationTest {
 
     @Test
     public void login_with_wrong_password() {
-        UserLoginDto userLoginDto = new UserLoginDto();
-        userLoginDto.setEmail("calvin@gmail.com");
-        userLoginDto.setPassword("wrong");
+        UserLoginDto userLoginDto = new UserLoginDto("user1@gmail.com", "wrong");
 
         assertThrows(ResponseStatusException.class, () -> {
             userService.login(userLoginDto);

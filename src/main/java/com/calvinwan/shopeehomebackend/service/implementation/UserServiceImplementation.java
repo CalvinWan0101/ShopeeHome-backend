@@ -25,6 +25,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public String insert(UserDto userDto) {
+        userDto.setDeleted(false);
         User user = userDao.getByEmail(userDto.getEmail());
         if (user != null) {
             log.warn("Email {} already exists", userDto.getEmail());
@@ -44,12 +45,17 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public void updateById(String id, UserDto userDto) {
+        userDto.setDeleted(false);
         userDao.updateById(id, userDto);
     }
 
     @Override
     public void deleteById(String id) {
-        userDao.deleteById(id);
+        User user = userDao.getById(id);
+        if (user != null) {
+            UserDto userDto = new UserDto(user.getEmail(), user.getPassword(), user.getName(), user.getPhoneNumber(), user.getAddresses(), true);
+            userDao.updateById(id, userDto);
+        }
     }
 
     @Override

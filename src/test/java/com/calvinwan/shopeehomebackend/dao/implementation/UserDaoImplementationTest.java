@@ -25,13 +25,13 @@ public class UserDaoImplementationTest {
     @Test
     public void get_by_id() {
         User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
-        String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
-        List<String> addresses = List.of("address-test1-A", "address-test1-B", "address-test1-C");
+        String hashedPassword = DigestUtils.md5DigestAsHex("user1".getBytes());
+        List<String> addresses = List.of("address-user1-A", "address-user1-B", "address-user1-C");
 
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
-        assertEquals("test1", user.getName());
-        assertEquals("test1@gmail.com", user.getEmail());
+        assertEquals("user1", user.getName());
+        assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
@@ -39,14 +39,14 @@ public class UserDaoImplementationTest {
 
     @Test
     public void get_by_email() {
-        User user = userDao.getByEmail("test1@gmail.com");
-        String hashedPassword = DigestUtils.md5DigestAsHex("test1".getBytes());
-        List<String> addresses = List.of("address-test1-A", "address-test1-B", "address-test1-C");
+        User user = userDao.getByEmail("user1@gmail.com");
+        String hashedPassword = DigestUtils.md5DigestAsHex("user1".getBytes());
+        List<String> addresses = List.of("address-user1-A", "address-user1-B", "address-user1-C");
 
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
-        assertEquals("test1", user.getName());
-        assertEquals("test1@gmail.com", user.getEmail());
+        assertEquals("user1", user.getName());
+        assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
@@ -56,56 +56,51 @@ public class UserDaoImplementationTest {
     @Transactional
     public void insert() {
         UserDto userDto = new UserDto(
-                "test100",
-                "test100@gmail.com",
-                "0909100100",
-                "test100",
-                List.of("address-test100-A", "address-test100-B", "address-test100-C")
+                "user87@gmail.com",
+                "user87",
+                "user87",
+                "0909877877",
+                List.of("address-user87-A", "address-user87-B", "address-user87-C"),
+                false
         );
 
         String id = userDao.insert(userDto);
 
-        User user2 = userDao.getById(id);
+        User user = userDao.getById(id);
 
-        assertNotNull(user2);
-        assertEquals(id, user2.getId());
-        assertEquals("test100", user2.getName());
-        assertEquals("test100@gmail.com", user2.getEmail());
-        assertEquals("0909100100", user2.getPhoneNumber());
-        assertEquals("test100", user2.getPassword());
-        assertEquals(List.of("address-test100-A", "address-test100-B", "address-test100-C"), user2.getAddresses());
+        assertNotNull(user);
+        assertEquals(id, user.getId());
+        assertEquals("user87@gmail.com", user.getEmail());
+        assertEquals("user87", user.getPassword());
+        assertEquals("user87", user.getName());
+        assertEquals("0909877877", user.getPhoneNumber());
+        assertEquals(List.of("address-user87-A", "address-user87-B", "address-user87-C"), user.getAddresses());
+        assertFalse(user.isDeleted());
     }
 
     @Test
     @Transactional
     public void update_by_id() {
         UserDto userDto = new UserDto(
-                "Calvin",
-                "calvin@gmail.com",
+                "userNew@gmail.com",
+                "userNew",
+                "userNew",
                 "0909001001",
-                "newpassword",
-                List.of("address-calvin-A", "address-calvin-B", "address-calvin-C")
+                List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"),
+                false
         );
 
         userDao.updateById("30e7e267-c791-424a-a94b-fa5e695d27e7", userDto);
 
+
         User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
         assertNotNull(user);
         assertEquals("30e7e267-c791-424a-a94b-fa5e695d27e7", user.getId());
-        assertEquals("Calvin", user.getName());
-        assertEquals("calvin@gmail.com", user.getEmail());
+        assertEquals("userNew@gmail.com", user.getEmail());
+        assertEquals("userNew", user.getPassword());
+        assertEquals("userNew", user.getName());
         assertEquals("0909001001", user.getPhoneNumber());
-        assertEquals("newpassword", user.getPassword());
-        assertEquals(List.of("address-calvin-A", "address-calvin-B", "address-calvin-C"), user.getAddresses());
-
-    }
-
-    @Test
-    @Transactional
-    public void delete_by_id() {
-        userDao.deleteById("30e7e267-c791-424a-a94b-fa5e695d27e7");
-        User user = userDao.getById("30e7e267-c791-424a-a94b-fa5e695d27e7");
-
-        assertNull(user);
+        assertEquals(List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"), user.getAddresses());
+        assertFalse(user.isDeleted());
     }
 }
