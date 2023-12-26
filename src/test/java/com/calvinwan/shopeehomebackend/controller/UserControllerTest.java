@@ -69,7 +69,7 @@ public class UserControllerTest {
 
     @Test
     @Transactional
-    public void updateById() throws Exception {
+    public void update_by_id() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .put("/user/30e7e267-c791-424a-a94b-fa5e695d27e7")
                 .contentType(MediaType.APPLICATION_JSON)

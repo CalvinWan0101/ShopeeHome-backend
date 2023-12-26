@@ -20,7 +20,7 @@ public class AdminServiceImplementationTest {
     AdminService adminService;
 
     @Test
-    public void getById() {
+    public void get_by_id() {
         Admin admin = adminService.getById("17335ce6-af7c-4c21-af55-9eca9dc5dfb7");
         String hashedPassword = DigestUtils.md5DigestAsHex("admin".getBytes());
 

@@ -36,3 +36,23 @@ CREATE TABLE shop
     deleter_id   VARCHAR(50) REFERENCES admin (id),
     is_deleted   BOOLEAN      NOT NULL
 );
+
+CREATE TABLE product
+(
+    id            VARCHAR(50)  NOT NULL PRIMARY KEY,
+    name          VARCHAR(100) NOT NULL,
+    amount        INT          NOT NULL,
+    price         INT          NOT NULL,
+    description   VARCHAR(1000),
+    discount_rate DOUBLE PRECISION,
+    discount_date DATE,
+    shop_id       VARCHAR(50) REFERENCES shop (id),
+);
+
+CREATE TABLE product_image
+(
+    product_id VARCHAR(50) REFERENCES product (id),
+    id         VARCHAR(50) NOT NULL,
+    image      bytea       NOT NULL,
+    PRIMARY KEY (product_id, id)
+);
