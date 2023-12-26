@@ -64,14 +64,15 @@ public class UserServiceImplementation implements UserService {
         User user = userDao.getByEmail(userLoginDto.getEmail());
         if (user == null) {
             log.warn("Email {} not registed", userLoginDto.getEmail());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            String email = userLoginDto.getEmail();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email " + email + " not registered");
         }
 
         String hashedPassword = DigestUtils.md5DigestAsHex(userLoginDto.getPassword().getBytes());
 
         if (!user.getPassword().equals(hashedPassword)) {
             log.warn("Password is incorrect");
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is incorrect");
         }
         return user;
     }
