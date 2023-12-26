@@ -77,26 +77,26 @@ VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 'toothbrush', 279123, 50, 'This 
 
 -- product_image
 -- iphone_1
-INSERT INTO product_image (product_id, id, image)
-VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 'acfe49b5-4d14-403b-a4f4-866730067c6a', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 1, 'image');
 -- iphone_2
-INSERT INTO product_image (product_id, id, image)
-VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', '4b8959b8-53c0-4572-83ec-a72bafda5d10', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 'image');
 -- xiaomi_1
-INSERT INTO product_image (product_id, id, image)
-VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 'f459381e-e9cc-4ad4-a349-a8df87bae08c', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 1, 'image');
 -- xiaomi_2
-INSERT INTO product_image (product_id, id, image)
-VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', '57cfec63-d9e3-4acc-971a-e22e34d8a802', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 'image');
 -- tissue_1
-INSERT INTO product_image (product_id, id, image)
-VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 'd2991c4b-86ec-4c19-94e5-8e1ccf203355', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 1, 'image');
 -- tissue_2
-INSERT INTO product_image (product_id, id, image)
-VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', '8ac398a8-afe3-401f-bef3-01191bdd5743', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 2, 'image');
 -- toothbrush_1
-INSERT INTO product_image (product_id, id, image)
-VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', '9414b8a5-8033-4769-b680-e471ef54fb1d', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 1, 'image');
 -- toothbrush_2
-INSERT INTO product_image (product_id, id, image)
-VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', '767baa08-94fc-40ee-bf46-af6d69e340ff', '1');
+INSERT INTO product_image (product_id, image_order, image)
+VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 2, 'image');

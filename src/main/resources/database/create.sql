@@ -51,8 +51,8 @@ CREATE TABLE product
 
 CREATE TABLE product_image
 (
-    product_id VARCHAR(50) REFERENCES product (id),
-    id         VARCHAR(50) NOT NULL,
-    image      bytea       NOT NULL,
-    PRIMARY KEY (product_id, id)
+    product_id  VARCHAR(50) REFERENCES product (id),
+    image_order INT   NOT NULL,
+    image       bytea NOT NULL,
+    PRIMARY KEY (product_id, image_order)
 );
