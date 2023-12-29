@@ -1,7 +1,7 @@
 package com.calvinwan.shopeehomebackend.dao.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.UserDao;
-import com.calvinwan.shopeehomebackend.dto.UserDto;
+import com.calvinwan.shopeehomebackend.dto.user.UserDto;
 import com.calvinwan.shopeehomebackend.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 

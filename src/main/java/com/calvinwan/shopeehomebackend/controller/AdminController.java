@@ -1,6 +1,6 @@
 package com.calvinwan.shopeehomebackend.controller;
 
-import com.calvinwan.shopeehomebackend.dto.AdminLoginDto;
+import com.calvinwan.shopeehomebackend.dto.admin.AdminLoginDto;
 import com.calvinwan.shopeehomebackend.model.Admin;
 import com.calvinwan.shopeehomebackend.service.AdminService;
 import jakarta.validation.Valid;

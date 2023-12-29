@@ -1,7 +1,7 @@
 package com.calvinwan.shopeehomebackend.service;
 
-import com.calvinwan.shopeehomebackend.dto.ShopDto;
-import com.calvinwan.shopeehomebackend.dto.ShopLoginDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopLoginDto;
 import com.calvinwan.shopeehomebackend.model.Shop;
 
 public interface ShopService {

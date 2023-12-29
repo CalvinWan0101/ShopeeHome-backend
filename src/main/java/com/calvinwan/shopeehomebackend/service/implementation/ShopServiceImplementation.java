@@ -1,8 +1,8 @@
 package com.calvinwan.shopeehomebackend.service.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.ShopDao;
-import com.calvinwan.shopeehomebackend.dto.ShopDto;
-import com.calvinwan.shopeehomebackend.dto.ShopLoginDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopLoginDto;
 import com.calvinwan.shopeehomebackend.model.Shop;
 import com.calvinwan.shopeehomebackend.service.ShopService;
 import org.slf4j.Logger;

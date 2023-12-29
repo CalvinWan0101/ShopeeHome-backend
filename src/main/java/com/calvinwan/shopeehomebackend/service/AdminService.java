@@ -1,6 +1,6 @@
 package com.calvinwan.shopeehomebackend.service;
 
-import com.calvinwan.shopeehomebackend.dto.AdminLoginDto;
+import com.calvinwan.shopeehomebackend.dto.admin.AdminLoginDto;
 import com.calvinwan.shopeehomebackend.model.Admin;
 
 public interface AdminService {

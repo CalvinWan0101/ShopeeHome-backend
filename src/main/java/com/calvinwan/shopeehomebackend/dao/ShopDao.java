@@ -1,6 +1,6 @@
 package com.calvinwan.shopeehomebackend.dao;
 
-import com.calvinwan.shopeehomebackend.dto.ShopDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopDto;
 import com.calvinwan.shopeehomebackend.model.Shop;
 
 public interface ShopDao {

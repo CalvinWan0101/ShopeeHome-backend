@@ -1,4 +1,4 @@
-package com.calvinwan.shopeehomebackend.dto;
+package com.calvinwan.shopeehomebackend.dto.admin;
 
 import jakarta.validation.constraints.NotNull;
 

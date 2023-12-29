@@ -61,42 +61,46 @@ VALUES ('f0694ecf-6282-48f9-a401-49eb08067ce0', 'shop2@gmail.com', '5370c7bc26a9
 --password: shop2
 
 -- product
-INSERT INTO product (id, name, amount, price, description, discount_rate, discount_date, shop_id)
-VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 'iphone', 90, 36900, 'This is iphone', 0.87, '2024-07-31',
-        '1013f7a0-0017-4c21-872f-c014914e6834');
-INSERT INTO product (id, name, amount, price, description, discount_rate, discount_date, shop_id)
-VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 'xiaomi', 140, 19999, 'This is xiaomi', 0.9, '2024-06-30',
-        '1013f7a0-0017-4c21-872f-c014914e6834');
-INSERT INTO product (id, name, amount, price, description, discount_rate, discount_date, shop_id)
-VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 'tissue', 52123, 100, 'This is tissue', NULL, NULL,
-        'f0694ecf-6282-48f9-a401-49eb08067ce0');
-INSERT INTO product (id, name, amount, price, description, discount_rate, discount_date, shop_id)
-VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 'toothbrush', 279123, 50, 'This is toothbrush', NULL, NULL,
-        'f0694ecf-6282-48f9-a401-49eb08067ce0');
+INSERT INTO product (id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted)
+VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 'iphone', 90, 27, 36900, 'This is iphone', 0.87, '2024-07-31',
+        '1013f7a0-0017-4c21-872f-c014914e6834', FALSE);
+INSERT INTO product (id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted)
+VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 'xiaomi', 140, 30, 19999, 'This is xiaomi', 0.9, '2024-06-30',
+        '1013f7a0-0017-4c21-872f-c014914e6834', FALSE);
+INSERT INTO product (id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted)
+VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 'tissue', 52123, 29134, 100, 'This is tissue', NULL, NULL,
+        'f0694ecf-6282-48f9-a401-49eb08067ce0', FALSE);
+INSERT INTO product (id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted)
+VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 'toothbrush', 279123, 34126, 50, 'This is toothbrush', 0.1,
+        '2023-08-07',
+        'f0694ecf-6282-48f9-a401-49eb08067ce0', FALSE);
+INSERT INTO product (id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted)
+VALUES ('4f366b46-50ea-42d9-8216-e677f43b1819', 'backpack', 297, 26, 2100, 'This is backpack', NULL, NULL,
+        'f0694ecf-6282-48f9-a401-49eb08067ce0', TRUE);
 
 
 -- product_image
 -- iphone_1
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 1, 'image');
+VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 1, 'image-iphone-1');
 -- iphone_2
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 'image');
+VALUES ('6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 'image-iphone-2');
 -- xiaomi_1
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 1, 'image');
+VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 1, 'image-xiaomi-1');
 -- xiaomi_2
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 'image');
+VALUES ('8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 'image-xiaomi-2');
 -- tissue_1
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 1, 'image');
+VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 1, 'image-tissue-1');
 -- tissue_2
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 2, 'image');
+VALUES ('acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 2, 'image-tissue-2');
 -- toothbrush_1
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 1, 'image');
+VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 1, 'image-toothbrush-1');
 -- toothbrush_2
 INSERT INTO product_image (product_id, image_order, image)
-VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 2, 'image');
+VALUES ('9595f97a-bf11-488a-8c15-9edf4db1c450', 2, 'image-toothbrush-2');

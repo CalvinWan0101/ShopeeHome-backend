@@ -16,4 +16,9 @@ public class ImageBase64Converter {
         byte[] imageBytes = Base64.getDecoder().decode(base64String);
         Files.write(Paths.get(outputPath), imageBytes);
     }
+
+    public static byte[] imageToBytes(String imagePath) throws IOException {
+        return Files.readAllBytes(Paths.get(imagePath));
+    }
+
 }

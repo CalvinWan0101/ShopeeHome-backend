@@ -1,6 +1,6 @@
 package com.calvinwan.shopeehomebackend.dao;
 
-import com.calvinwan.shopeehomebackend.dto.UserDto;
+import com.calvinwan.shopeehomebackend.dto.user.UserDto;
 import com.calvinwan.shopeehomebackend.model.User;
 
 public interface UserDao {

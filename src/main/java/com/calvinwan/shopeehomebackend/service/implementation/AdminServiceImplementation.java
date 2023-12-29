@@ -1,7 +1,7 @@
 package com.calvinwan.shopeehomebackend.service.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.AdminDao;
-import com.calvinwan.shopeehomebackend.dto.AdminLoginDto;
+import com.calvinwan.shopeehomebackend.dto.admin.AdminLoginDto;
 import com.calvinwan.shopeehomebackend.model.Admin;
 import com.calvinwan.shopeehomebackend.service.AdminService;
 import org.slf4j.Logger;

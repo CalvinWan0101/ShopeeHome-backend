@@ -1,8 +1,8 @@
 package com.calvinwan.shopeehomebackend.service.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.UserDao;
-import com.calvinwan.shopeehomebackend.dto.UserDto;
-import com.calvinwan.shopeehomebackend.dto.UserLoginDto;
+import com.calvinwan.shopeehomebackend.dto.user.UserDto;
+import com.calvinwan.shopeehomebackend.dto.user.UserLoginDto;
 import com.calvinwan.shopeehomebackend.model.User;
 import com.calvinwan.shopeehomebackend.service.UserService;
 import org.slf4j.Logger;
@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.UUID;
 
 @Service
 public class UserServiceImplementation implements UserService {

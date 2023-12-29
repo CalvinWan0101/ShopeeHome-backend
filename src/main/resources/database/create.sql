@@ -42,11 +42,13 @@ CREATE TABLE product
     id            VARCHAR(50)  NOT NULL PRIMARY KEY,
     name          VARCHAR(100) NOT NULL,
     amount        INT          NOT NULL,
+    sales         INT          NOT NULL,
     price         INT          NOT NULL,
     description   VARCHAR(1000),
     discount_rate DOUBLE PRECISION,
     discount_date DATE,
     shop_id       VARCHAR(50) REFERENCES shop (id),
+    is_deleted    BOOLEAN      NOT NULL
 );
 
 CREATE TABLE product_image

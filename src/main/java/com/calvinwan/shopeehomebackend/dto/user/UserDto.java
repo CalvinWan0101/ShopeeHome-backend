@@ -1,4 +1,4 @@
-package com.calvinwan.shopeehomebackend.dto;
+package com.calvinwan.shopeehomebackend.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

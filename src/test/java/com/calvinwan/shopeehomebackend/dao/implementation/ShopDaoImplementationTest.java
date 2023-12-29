@@ -1,7 +1,7 @@
 package com.calvinwan.shopeehomebackend.dao.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.ShopDao;
-import com.calvinwan.shopeehomebackend.dto.ShopDto;
+import com.calvinwan.shopeehomebackend.dto.shop.ShopDto;
 import com.calvinwan.shopeehomebackend.model.Shop;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

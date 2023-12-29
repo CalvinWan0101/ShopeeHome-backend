@@ -1,7 +1,7 @@
 package com.calvinwan.shopeehomebackend.dao.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.UserDao;
-import com.calvinwan.shopeehomebackend.dto.UserDto;
+import com.calvinwan.shopeehomebackend.dto.user.UserDto;
 import com.calvinwan.shopeehomebackend.mapper.UserRowMapper;
 import com.calvinwan.shopeehomebackend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
