@@ -40,7 +40,7 @@ public class ProductDaoImplementation implements ProductDao {
             Map<String, Object> mapImage = new HashMap<>();
             mapImage.put("id", map.get("id"));
             mapImage.put("imageOrder", i + 1);
-            byte[] decodedImage = Base64.getDecoder().decode(images.get(i));
+            byte[] decodedImage = Base64.getMimeDecoder().decode(images.get(i));
             mapImage.put("image", decodedImage);
             jdbcTemplate.update(sqlImage, mapImage);
         }
