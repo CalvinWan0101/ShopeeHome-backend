@@ -27,9 +27,6 @@ public class ProductServiceImplementation implements ProductService {
         List<String> images = productDto.getImages();
         for (int i = 0; i < images.size(); i++) {
             String image = images.get(i);
-            image = image.substring(image.indexOf("/9j") + 1);
-            image = image.replace("\r\n", "");
-            image = image.replace("\n", "");
             images.set(i, image);
         }
         return productDao.insert(productDto);
