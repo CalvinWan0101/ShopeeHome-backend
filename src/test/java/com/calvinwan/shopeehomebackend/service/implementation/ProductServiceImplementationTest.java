@@ -6,7 +6,6 @@ import com.calvinwan.shopeehomebackend.dto.product.ProductPreviewDto;
 import com.calvinwan.shopeehomebackend.dto.product.ProductDto;
 import com.calvinwan.shopeehomebackend.model.Product;
 import com.calvinwan.shopeehomebackend.service.ProductService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -118,27 +117,27 @@ public class ProductServiceImplementationTest {
     }
 
     @Test
-    public void get_by_name() {
-        List<Product> products = productService.getByName("i");
+    public void get_id_by_name() {
+        List<String> ids = productService.getIdByName("i");
 
-        assertEquals(3, products.size());
-        assertTrue(products.stream().anyMatch(product -> "iphone".equals(product.getName())));
-        assertTrue(products.stream().anyMatch(product -> "xiaomi".equals(product.getName())));
-        assertTrue(products.stream().anyMatch(product -> "tissue".equals(product.getName())));
+        assertEquals(3, ids.size());
+        assertTrue(ids.stream().anyMatch(id -> "6874ada1-747f-41a7-bb9a-613d2ec0ce1d".equals(id)));
+        assertTrue(ids.stream().anyMatch(id -> "8c883a21-fad1-43af-8b15-54b2c1c7a70e".equals(id)));
+        assertTrue(ids.stream().anyMatch(id -> "acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3".equals(id)));
     }
 
     @Test
     public void get_by_name_deleted() {
-        List<Product> products = productService.getByName("backpack");
+        List<String> ids = productService.getIdByName("backpack");
 
-        assertNull(products);
+        assertNull(ids);
     }
 
     @Test
     public void get_by_name_not_found() {
-        List<Product> products = productService.getByName("not found");
+        List<String> ids = productService.getIdByName("not found");
 
-        assertNull(products);
+        assertNull(ids);
     }
 
     @Test

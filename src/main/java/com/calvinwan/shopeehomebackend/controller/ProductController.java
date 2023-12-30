@@ -36,12 +36,12 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @GetMapping("/product/name/{name}") // TODO: change to give the simple information
-    public ResponseEntity<List<Product>> getByName(@PathVariable String name) {
-        List<Product> products = productService.getByName(name);
+    @GetMapping("/product/id/{name}") // TODO: change to give the simple information
+    public ResponseEntity<List<String>> getByName(@PathVariable String name) {
+        List<String> ids = productService.getIdByName(name);
 
-        if (products != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(products);
+        if (ids != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(ids);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

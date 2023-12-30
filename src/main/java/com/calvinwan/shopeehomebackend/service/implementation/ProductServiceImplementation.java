@@ -38,8 +38,8 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public List<Product> getByName(String name) {
-        return productDao.getByName(name);
+    public List<String> getIdByName(String name) {
+        return productDao.getIdByName(name);
     }
 
     @Override

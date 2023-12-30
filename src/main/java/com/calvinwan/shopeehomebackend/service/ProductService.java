@@ -12,7 +12,7 @@ public interface ProductService {
 
     Product getById(String id);
 
-    List<Product> getByName(String name);
+    List<String> getIdByName(String name);
 
     List<ProductNameDto> getAllName();
 

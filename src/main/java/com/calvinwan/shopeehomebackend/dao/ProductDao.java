@@ -10,7 +10,7 @@ public interface ProductDao {
     public String insert(ProductDto productDto);
 
     Product getById(String id);
-    List<Product> getByName(String name);
+    List<String> getIdByName(String name);
 
     List<ProductNameDto> getAllName();
 

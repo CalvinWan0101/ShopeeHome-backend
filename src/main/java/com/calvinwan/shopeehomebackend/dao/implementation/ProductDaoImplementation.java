@@ -65,22 +65,15 @@ public class ProductDaoImplementation implements ProductDao {
     }
 
     @Override
-    public List<Product> getByName(String name) {
-        String sql = "SELECT id, name, amount, sales, price, description, discount_rate, discount_date, shop_id, is_deleted FROM product WHERE name LIKE :name AND is_deleted = FALSE";
+    public List<String> getIdByName(String name) {
+        String sql = "SELECT id FROM product WHERE name LIKE :name AND is_deleted = FALSE";
         Map<String, Object> map = new HashMap<>();
         map.put("name", "%" + name + "%");
-        List<Product> products = jdbcTemplate.query(sql, map, new ProductRowMapper());
-        if (products.isEmpty()) {
+        List<String> ids = jdbcTemplate.queryForList(sql, map, String.class);
+        if (ids.isEmpty()) {
             return null;
         }
-        for (Product product : products) {
-            String sqlImage = "SELECT image FROM product_image WHERE product_id = :id ORDER BY image_order";
-            Map<String, Object> mapImage = new HashMap<>();
-            mapImage.put("id", product.getId());
-            List<String> images = jdbcTemplate.queryForList(sqlImage, mapImage, String.class);
-            product.setImages(images);
-        }
-        return products;
+        return ids;
     }
 
     @Override

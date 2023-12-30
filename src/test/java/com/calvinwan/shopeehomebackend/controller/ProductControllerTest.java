@@ -92,35 +92,24 @@ public class ProductControllerTest {
     @Test
     public void get_by_name() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/product/name/iphone");
+                .get("/product/id/iphone");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("6874ada1-747f-41a7-bb9a-613d2ec0ce1d"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("iphone"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].amount").value(90))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].sales").value(27))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].price").value(36900))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].description").value("This is iphone"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].discountRate").value(0.87))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].discountDate").value("2024-07-31"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].shopId").value("1013f7a0-0017-4c21-872f-c014914e6834"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].images[0]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].images[1]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].deleted").value(false))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value("6874ada1-747f-41a7-bb9a-613d2ec0ce1d"))
                 .andReturn();
     }
 
     @Test
     public void get_by_name_with_uncompleted_name() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/product/name/i");
+                .get("/product/id/i");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("iphone"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value("xiaomi"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[2].name").value("tissue"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0]").value("6874ada1-747f-41a7-bb9a-613d2ec0ce1d"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1]").value("8c883a21-fad1-43af-8b15-54b2c1c7a70e"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[2]").value("acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3"))
                 .andReturn();
     }
 
