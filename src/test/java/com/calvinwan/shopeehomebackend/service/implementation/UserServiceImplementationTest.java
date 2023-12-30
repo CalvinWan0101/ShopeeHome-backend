@@ -34,6 +34,7 @@ public class UserServiceImplementationTest {
         assertEquals("user1", user.getName());
         assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
+        assertEquals("user1_avatar", user.getAvatar());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
     }
@@ -46,6 +47,7 @@ public class UserServiceImplementationTest {
                 "user87",
                 "user87",
                 "0909877877",
+                "user87_avatar",
                 List.of("address-user87-A", "address-user87-B", "address-user87-C"),
                 false
         );
@@ -72,6 +74,7 @@ public class UserServiceImplementationTest {
                 "user87",
                 "user87",
                 "0909877877",
+                "user87_avatar",
                 List.of("address-user87-A", "address-user87-B", "address-user87-C"),
                 false
         );
@@ -89,6 +92,7 @@ public class UserServiceImplementationTest {
                 "userNew",
                 "userNew",
                 "0909001001",
+                "userNew_avatar",
                 List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"),
                 false
         );
@@ -129,6 +133,7 @@ public class UserServiceImplementationTest {
         assertEquals("user1", user.getName());
         assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
+        assertEquals("user1_avatar", user.getAvatar());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
     }

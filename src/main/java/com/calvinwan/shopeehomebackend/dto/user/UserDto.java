@@ -14,14 +14,16 @@ public class UserDto {
     @NotNull
     private String name;
     private String phoneNumber;
+    private String avatar;
     private List<String> addresses;
     private boolean isDeleted;
 
-    public UserDto(String email, String password, String name, String phoneNumber, List<String> addresses, boolean isDeleted) {
+    public UserDto(String email, String password, String name, String phoneNumber, String avatar, List<String> addresses, boolean isDeleted) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
         this.addresses = addresses;
         this.isDeleted = isDeleted;
     }
@@ -56,6 +58,14 @@ public class UserDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public List<String> getAddresses() {

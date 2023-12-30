@@ -32,6 +32,7 @@ public class UserDaoImplementationTest {
         assertEquals("user1", user.getName());
         assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
+        assertEquals("user1_avatar", user.getAvatar());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
     }
@@ -47,6 +48,7 @@ public class UserDaoImplementationTest {
         assertEquals("user1", user.getName());
         assertEquals("user1@gmail.com", user.getEmail());
         assertEquals("0909001001", user.getPhoneNumber());
+        assertEquals("user1_avatar", user.getAvatar());
         assertEquals(hashedPassword, user.getPassword());
         assertEquals(addresses, user.getAddresses());
     }
@@ -59,6 +61,7 @@ public class UserDaoImplementationTest {
                 "user87",
                 "user87",
                 "0909877877",
+                "user87_avatar",
                 List.of("address-user87-A", "address-user87-B", "address-user87-C"),
                 false
         );
@@ -73,6 +76,7 @@ public class UserDaoImplementationTest {
         assertEquals("user87", user.getPassword());
         assertEquals("user87", user.getName());
         assertEquals("0909877877", user.getPhoneNumber());
+        assertEquals("user87_avatar", user.getAvatar());
         assertEquals(List.of("address-user87-A", "address-user87-B", "address-user87-C"), user.getAddresses());
         assertFalse(user.isDeleted());
     }
@@ -85,6 +89,7 @@ public class UserDaoImplementationTest {
                 "userNew",
                 "userNew",
                 "0909001001",
+                "userNew_avatar",
                 List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"),
                 false
         );
@@ -99,6 +104,7 @@ public class UserDaoImplementationTest {
         assertEquals("userNew", user.getPassword());
         assertEquals("userNew", user.getName());
         assertEquals("0909001001", user.getPhoneNumber());
+        assertEquals("userNew_avatar", user.getAvatar());
         assertEquals(List.of("address-userNew-A", "address-userNew-B", "address-userNew-C"), user.getAddresses());
         assertFalse(user.isDeleted());
     }

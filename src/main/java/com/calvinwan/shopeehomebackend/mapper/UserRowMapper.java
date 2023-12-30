@@ -15,6 +15,7 @@ public class UserRowMapper implements RowMapper<User> {
                 rs.getString("password"),
                 rs.getString("name"),
                 rs.getString("phone_number"),
+                rs.getString("avatar"),
                 rs.getBoolean("is_deleted")
         );
         return user;

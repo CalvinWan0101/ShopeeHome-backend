@@ -13,16 +13,18 @@ public class User {
     private String password;
     private String name;
     private String phoneNumber;
+    private String avatar;
     private boolean isDeleted;
 
     private List<String> addresses;
 
-    public User(String id, String email, String password, String name, String phoneNumber, boolean isDeleted) {
+    public User(String id, String email, String password, String name, String phoneNumber, String avatar, boolean isDeleted) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
         this.isDeleted = isDeleted;
     }
 
@@ -64,6 +66,14 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public List<String> getAddresses() {

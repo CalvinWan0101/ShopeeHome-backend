@@ -5,6 +5,7 @@ CREATE TABLE myuser
     password     VARCHAR(100) NOT NULL,
     name         VARCHAR(100) NOT NULL,
     phone_number VARCHAR(20),
+    avatar       VARCHAR(10000000),
     is_deleted   BOOLEAN      NOT NULL
 );
 
@@ -32,6 +33,8 @@ CREATE TABLE shop
     phone_number VARCHAR(20)  NOT NULL,
     address      VARCHAR(100) NOT NULL,
     description  VARCHAR(1000),
+    avatar       VARCHAR(10000000),
+    background   VARCHAR(10000000),
     creater_id   VARCHAR(50) REFERENCES admin (id),
     deleter_id   VARCHAR(50) REFERENCES admin (id),
     is_deleted   BOOLEAN      NOT NULL
@@ -54,7 +57,7 @@ CREATE TABLE product
 CREATE TABLE product_image
 (
     product_id  VARCHAR(50) REFERENCES product (id),
-    image_order INT   NOT NULL,
+    image_order INT               NOT NULL,
     image       VARCHAR(10000000) NOT NULL,
     PRIMARY KEY (product_id, image_order)
 );

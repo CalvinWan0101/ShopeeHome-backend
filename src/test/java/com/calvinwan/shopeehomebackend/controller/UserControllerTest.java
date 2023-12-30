@@ -38,6 +38,7 @@ public class UserControllerTest {
                           "email": "john@gmail.com",
                           "phoneNumber": "0909000123",
                           "password": "john",
+                          "avatar": "john_avatar",
                           "addresses":[
                             "address-test1-A",
                             "address-test1-B",
@@ -47,6 +48,14 @@ public class UserControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201))
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.name").value("John"))
+                .andExpect(jsonPath("$.email").value("john@gmail.com"))
+                .andExpect(jsonPath("$.phoneNumber").value("0909000123"))
+                .andExpect(jsonPath("$.avatar").value("john_avatar"))
+                .andExpect(jsonPath("$.addresses[0]").value("address-test1-A"))
+                .andExpect(jsonPath("$.addresses[1]").value("address-test1-B"))
+                .andExpect(jsonPath("$.addresses[2]").value("address-test1-C"))
                 .andReturn();
     }
 
@@ -61,6 +70,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.name").value("user1"))
                 .andExpect(jsonPath("$.email").value("user1@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909001001"))
+                .andExpect(jsonPath("$.avatar").value("user1_avatar"))
                 .andExpect(jsonPath("$.addresses[0]").value("address-user1-A"))
                 .andExpect(jsonPath("$.addresses[1]").value("address-user1-B"))
                 .andExpect(jsonPath("$.addresses[2]").value("address-user1-C"))
@@ -79,6 +89,7 @@ public class UserControllerTest {
                           "email": "calvin@gmail.com",
                           "phoneNumber": "0909000111",
                           "password": "calvin",
+                            "avatar": "calvin_avatar",
                           "addresses":[
                             "address-calvin-A",
                             "address-calvin-B",
@@ -92,6 +103,7 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.name").value("Calvin"))
                 .andExpect(jsonPath("$.email").value("calvin@gmail.com"))
                 .andExpect(jsonPath("$.phoneNumber").value("0909000111"))
+                .andExpect(jsonPath("$.avatar").value("calvin_avatar"))
                 .andExpect(jsonPath("$.addresses[0]").value("address-calvin-A"))
                 .andExpect(jsonPath("$.addresses[1]").value("address-calvin-B"))
                 .andExpect(jsonPath("$.addresses[2]").value("address-calvin-C"))

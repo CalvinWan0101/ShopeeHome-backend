@@ -52,7 +52,7 @@ public class UserServiceImplementation implements UserService {
     public void deleteById(String id) {
         User user = userDao.getById(id);
         if (user != null) {
-            UserDto userDto = new UserDto(user.getEmail(), user.getPassword(), user.getName(), user.getPhoneNumber(), user.getAddresses(), true);
+            UserDto userDto = new UserDto(user.getEmail(), user.getPassword(), user.getName(), user.getPhoneNumber(), user.getAvatar(), user.getAddresses(), true);
             userDao.updateById(id, userDto);
         }
     }
