@@ -20,19 +20,23 @@ public class ShopDto {
     @NotNull
     private String address;
     private String description;
+    private String avatar;
+    private String background;
     private String createrId;
     private String deleterId;
 
     @NotNull
     private boolean isDeleted;
 
-    public ShopDto(String email, String password, String name, String phoneNumber, String address, String description, String createrId, String deleterId, boolean isDeleted) {
+    public ShopDto(String email, String password, String name, String phoneNumber, String address, String description, String avatar, String background, String createrId, String deleterId, boolean isDeleted) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.description = description;
+        this.avatar = avatar;
+        this.background = background;
         this.createrId = createrId;
         this.deleterId = deleterId;
         this.isDeleted = isDeleted;
@@ -84,6 +88,22 @@ public class ShopDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
     }
 
     public String getCreaterId() {

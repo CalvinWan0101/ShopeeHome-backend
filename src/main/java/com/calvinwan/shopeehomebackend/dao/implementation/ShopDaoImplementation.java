@@ -21,7 +21,7 @@ public class ShopDaoImplementation implements ShopDao {
 
     @Override
     public String insert(ShopDto shopDto) {
-        String sql = "INSERT INTO shop (id, email, password, name, phone_number, address, description, creater_id, is_deleted) VALUES(:id, :email, :password, :name, :phoneNumber, :address, :description, :createrId, :isDeleted)";
+        String sql = "INSERT INTO shop (id, email, password, name, phone_number, address, description,avatar, background, creater_id, is_deleted) VALUES(:id, :email, :password, :name, :phoneNumber, :address, :description, :avatar, :background, :createrId, :isDeleted)";
         Map<String, Object> map = new HashMap<>();
         map.put("id", UUID.randomUUID().toString());
         map.put("email", shopDto.getEmail());
@@ -30,6 +30,8 @@ public class ShopDaoImplementation implements ShopDao {
         map.put("phoneNumber", shopDto.getPhoneNumber());
         map.put("address", shopDto.getAddress());
         map.put("description", shopDto.getDescription());
+        map.put("avatar", shopDto.getAvatar());
+        map.put("background", shopDto.getBackground());
         map.put("createrId", shopDto.getCreaterId());
         map.put("isDeleted", shopDto.isDeleted());
         jdbcTemplate.update(sql, map);
@@ -38,7 +40,7 @@ public class ShopDaoImplementation implements ShopDao {
 
     @Override
     public Shop getById(String id) {
-        String sql = "SELECT id, email, password, name, phone_number, address, description, creater_id, deleter_id, is_deleted FROM shop WHERE id = :id";
+        String sql = "SELECT id, email, password, name, phone_number, address, description, avatar, background, creater_id, deleter_id, is_deleted FROM shop WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         List<Shop> shops = jdbcTemplate.query(sql, map, new ShopRowMapper());
@@ -50,7 +52,7 @@ public class ShopDaoImplementation implements ShopDao {
 
     @Override
     public Shop getByEmail(String email) {
-        String sql = "SELECT id, email, password, name, phone_number, address, description, creater_id, deleter_id, is_deleted FROM shop WHERE email = :email";
+        String sql = "SELECT id, email, password, name, phone_number, address, description, avatar, background, creater_id, deleter_id, is_deleted FROM shop WHERE email = :email";
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
         List<Shop> shops = jdbcTemplate.query(sql, map, new ShopRowMapper());
@@ -63,7 +65,7 @@ public class ShopDaoImplementation implements ShopDao {
 
     @Override
     public void updateById(String id, ShopDto shopDto) {
-        String sql = "UPDATE shop SET email = :email, password = :password, name = :name, phone_number = :phoneNumber, address = :address, description = :description, creater_id = :createrId, deleter_id = :deleterId, is_deleted = :isDeleted WHERE id = :id";
+        String sql = "UPDATE shop SET email = :email, password = :password, name = :name, phone_number = :phoneNumber, address = :address, description = :description,avatar = :avatar, background = :background, creater_id = :createrId, deleter_id = :deleterId, is_deleted = :isDeleted WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("email", shopDto.getEmail());
@@ -72,6 +74,8 @@ public class ShopDaoImplementation implements ShopDao {
         map.put("phoneNumber", shopDto.getPhoneNumber());
         map.put("address", shopDto.getAddress());
         map.put("description", shopDto.getDescription());
+        map.put("avatar", shopDto.getAvatar());
+        map.put("background", shopDto.getBackground());
         map.put("createrId", shopDto.getCreaterId());
         map.put("deleterId", shopDto.getDeleterId());
         map.put("isDeleted", shopDto.isDeleted());

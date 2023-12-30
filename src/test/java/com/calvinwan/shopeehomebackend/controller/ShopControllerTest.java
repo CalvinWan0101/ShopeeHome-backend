@@ -38,6 +38,7 @@ class ShopControllerTest {
                            "phoneNumber": "0909000123",
                             "address": "calvin's shop address",
                             "description": "calvin's shop description",
+                            "avatar": "calvinshop_avatar",
                             "createrId": "17335ce6-af7c-4c21-af55-9eca9dc5dfb7",
                             "deleterId": null,
                             "deleted": false
@@ -45,6 +46,15 @@ class ShopControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("calvinshop@gmail.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("CalvinShop"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("0909000123"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.address").value("calvin's shop address"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("calvin's shop description"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.avatar").value("calvinshop_avatar"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.createrId").value("17335ce6-af7c-4c21-af55-9eca9dc5dfb7"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();
     }
 
@@ -62,6 +72,8 @@ class ShopControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("0909001001"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.address").value("address1"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("This is shop 1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.avatar").value("shop1_avatar"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.background").value("shop1_background"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.createrId").value("17335ce6-af7c-4c21-af55-9eca9dc5dfb7"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();
@@ -81,6 +93,8 @@ class ShopControllerTest {
                            "phoneNumber": "0909000123",
                             "address": "calvin's shop address",
                             "description": "calvin's shop description",
+                            "avatar": "calvinshop_avatar",
+                            "background": "calvinshop_background",
                             "createrId": "17335ce6-af7c-4c21-af55-9eca9dc5dfb7",
                             "deleterId": null,
                             "deleted": false
@@ -94,6 +108,8 @@ class ShopControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("0909000123"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.address").value("calvin's shop address"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("calvin's shop description"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.avatar").value("calvinshop_avatar"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.background").value("calvinshop_background"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.createrId").value("17335ce6-af7c-4c21-af55-9eca9dc5dfb7"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();

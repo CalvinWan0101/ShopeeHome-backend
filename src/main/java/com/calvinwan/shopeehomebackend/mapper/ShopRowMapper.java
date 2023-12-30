@@ -17,6 +17,8 @@ public class ShopRowMapper implements RowMapper<Shop> {
                 rs.getString("phone_number"),
                 rs.getString("address"),
                 rs.getString("description"),
+                rs.getString("avatar"),
+                rs.getString("background"),
                 rs.getString("creater_id"),
                 rs.getString("deleter_id"),
                 rs.getBoolean("is_deleted")

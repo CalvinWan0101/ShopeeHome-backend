@@ -34,6 +34,8 @@ public class ShopServiceImplementationTest {
         assertEquals("0909001001", shop.getPhoneNumber());
         assertEquals("address1", shop.getAddress());
         assertEquals("This is shop 1", shop.getDescription());
+        assertEquals("shop1_avatar", shop.getAvatar());
+        assertEquals("shop1_background", shop.getBackground());
         assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", shop.getCreaterId());
         assertEquals(null, shop.getDeleterId());
         assertFalse(shop.isDeleted());
@@ -49,6 +51,8 @@ public class ShopServiceImplementationTest {
                 "0909000087",
                 "87 street 87th",
                 "This is shop87.",
+                "shop87_avatar",
+                "shop87_background",
                 "17335ce6-af7c-4c21-af55-9eca9dc5dfb7",
                 null,
                 false
@@ -65,6 +69,8 @@ public class ShopServiceImplementationTest {
         assertEquals("0909000087", shop.getPhoneNumber());
         assertEquals("87 street 87th", shop.getAddress());
         assertEquals("This is shop87.", shop.getDescription());
+        assertEquals("shop87_avatar", shop.getAvatar());
+        assertEquals("shop87_background", shop.getBackground());
         assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", shop.getCreaterId());
         assertEquals(null, shop.getDeleterId());
         assertEquals(false, shop.isDeleted());
@@ -80,6 +86,8 @@ public class ShopServiceImplementationTest {
                 "0909000087",
                 "87 street 87th",
                 "This is shop87.",
+                "shop87_avatar",
+                "shop87_background",
                 "17335ce6-af7c-4c21-af55-9eca9dc5dfb7",
                 null,
                 false
@@ -100,6 +108,8 @@ public class ShopServiceImplementationTest {
                 "0909000087",
                 "87 street 87th",
                 "This is shop87.",
+                "shop87_avatar",
+                "shop87_background",
                 "17335ce6-af7c-4c21-af55-9eca9dc5dfb7",
                 null,
                 false
@@ -116,6 +126,8 @@ public class ShopServiceImplementationTest {
         assertEquals("0909000087", shop.getPhoneNumber());
         assertEquals("87 street 87th", shop.getAddress());
         assertEquals("This is shop87.", shop.getDescription());
+        assertEquals("shop87_avatar", shop.getAvatar());
+        assertEquals("shop87_background", shop.getBackground());
         assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", shop.getCreaterId());
         assertEquals(null, shop.getDeleterId());
         assertEquals(false, shop.isDeleted());
@@ -145,6 +157,8 @@ public class ShopServiceImplementationTest {
         assertEquals(hashedPassword, shop.getPassword());
         assertEquals("address1", shop.getAddress());
         assertEquals("This is shop 1", shop.getDescription());
+        assertEquals("shop1_avatar", shop.getAvatar());
+        assertEquals("shop1_background", shop.getBackground());
         assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", shop.getCreaterId());
         assertEquals(null, shop.getDeleterId());
         assertFalse(shop.isDeleted());

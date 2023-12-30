@@ -52,7 +52,7 @@ public class ShopServiceImplementation implements ShopService {
     public void deleteById(String id) {
         Shop shop = shopDao.getById(id);
         if (shop != null) {
-            ShopDto shopDto = new ShopDto(shop.getEmail(), shop.getPassword(), shop.getName(), shop.getPhoneNumber(), shop.getAddress(), shop.getDescription(), shop.getCreaterId(), shop.getDeleterId(), true);
+            ShopDto shopDto = new ShopDto(shop.getEmail(), shop.getPassword(), shop.getName(), shop.getPhoneNumber(), shop.getAddress(), shop.getDescription(), shop.getAvatar(), shop.getBackground(), shop.getCreaterId(), shop.getDeleterId(), true);
             shopDao.updateById(id, shopDto);
         }
     }
