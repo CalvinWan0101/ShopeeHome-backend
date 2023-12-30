@@ -1,6 +1,5 @@
 package com.calvinwan.shopeehomebackend.service.implementation;
 
-import com.calvinwan.shopeehomebackend.ImageBase64Converter;
 import com.calvinwan.shopeehomebackend.dto.product.ProductNameDto;
 import com.calvinwan.shopeehomebackend.dto.product.ProductPreviewDto;
 import com.calvinwan.shopeehomebackend.dto.product.ProductDto;
@@ -32,10 +31,6 @@ public class ProductServiceImplementationTest {
     public void get_by_id_iphone() throws IOException {
         Product product = productService.getById("6874ada1-747f-41a7-bb9a-613d2ec0ce1d");
 
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg").toString(),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg").toString()
-        );
         assertNotNull(product);
         assertEquals("6874ada1-747f-41a7-bb9a-613d2ec0ce1d", product.getId());
         assertEquals("iphone", product.getName());
@@ -46,7 +41,7 @@ public class ProductServiceImplementationTest {
         assertEquals(0.87, product.getDiscountRate());
         assertEquals("2024-07-31", product.getDiscountDate().toString());
         assertEquals("1013f7a0-0017-4c21-872f-c014914e6834", product.getShopId());
-        assertEquals(images, product.getImages());
+        assertEquals(List.of("iphone_image_1", "iphone_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 
@@ -54,10 +49,6 @@ public class ProductServiceImplementationTest {
     public void get_by_id_xiaomi() throws IOException {
         Product product = productService.getById("8c883a21-fad1-43af-8b15-54b2c1c7a70e");
 
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_1.png").toString(),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_2.png").toString()
-        );
         assertNotNull(product);
         assertEquals("8c883a21-fad1-43af-8b15-54b2c1c7a70e", product.getId());
         assertEquals("xiaomi", product.getName());
@@ -68,7 +59,7 @@ public class ProductServiceImplementationTest {
         assertEquals(0.9, product.getDiscountRate());
         assertEquals("2024-06-30", product.getDiscountDate().toString());
         assertEquals("1013f7a0-0017-4c21-872f-c014914e6834", product.getShopId());
-        assertEquals(images, product.getImages());
+        assertEquals(List.of("xiaomi_image_1", "xiaomi_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 
@@ -76,10 +67,6 @@ public class ProductServiceImplementationTest {
     public void get_by_id_tissue() throws IOException {
         Product product = productService.getById("acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3");
 
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/3_tissue/tissue_1.webp").toString(),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/3_tissue/tissue_2.webp").toString()
-        );
         assertNotNull(product);
         assertEquals("acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3", product.getId());
         assertEquals("tissue", product.getName());
@@ -90,7 +77,7 @@ public class ProductServiceImplementationTest {
         assertNull(product.getDiscountRate());
         assertNull(product.getDiscountDate());
         assertEquals("f0694ecf-6282-48f9-a401-49eb08067ce0", product.getShopId());
-        assertEquals(images, product.getImages());
+        assertEquals(List.of("tissue_image_1", "tissue_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 
@@ -98,10 +85,6 @@ public class ProductServiceImplementationTest {
     public void get_by_id_toothbrush() throws IOException {
         Product product = productService.getById("9595f97a-bf11-488a-8c15-9edf4db1c450");
 
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_1.webp").toString(),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_2.webp").toString()
-        );
         assertNotNull(product);
         assertEquals("9595f97a-bf11-488a-8c15-9edf4db1c450", product.getId());
         assertEquals("toothbrush", product.getName());
@@ -112,7 +95,7 @@ public class ProductServiceImplementationTest {
         assertEquals(0.1, product.getDiscountRate());
         assertEquals("2023-08-07", product.getDiscountDate().toString());
         assertEquals("f0694ecf-6282-48f9-a401-49eb08067ce0", product.getShopId());
-        assertEquals(images, product.getImages());
+        assertEquals(List.of("toothbrush_image_1", "toothbrush_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 
@@ -174,7 +157,7 @@ public class ProductServiceImplementationTest {
         assertEquals("iphone", productPreviewDto.getName());
         assertEquals(32103, productPreviewDto.getFinalPrice());
         assertEquals(27, productPreviewDto.getSales());
-        assertEquals(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg").toString(), productPreviewDto.getImage());
+        assertEquals("iphone_image_1", productPreviewDto.getImage());
     }
 
     @Test
@@ -185,7 +168,7 @@ public class ProductServiceImplementationTest {
         assertEquals("tissue", productPreviewDto.getName());
         assertEquals(100, productPreviewDto.getFinalPrice());
         assertEquals(29134, productPreviewDto.getSales());
-        assertEquals(ImageBase64Converter.imageToBase64("src/test/resources/img/3_tissue/tissue_1.webp").toString(), productPreviewDto.getImage());
+        assertEquals("tissue_image_1", productPreviewDto.getImage());
     }
 
     @Test
@@ -196,18 +179,12 @@ public class ProductServiceImplementationTest {
         assertEquals("toothbrush", productPreviewDto.getName());
         assertEquals(50, productPreviewDto.getFinalPrice());
         assertEquals(34126, productPreviewDto.getSales());
-        assertEquals(ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_1.webp").toString(), productPreviewDto.getImage());
+        assertEquals("toothbrush_image_1", productPreviewDto.getImage());
     }
 
     @Test
     @Transactional
     public void insert() throws IOException, ParseException {
-        List<String> images = new ArrayList<>();
-        String iphone1 = ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_1.webp");
-        String iphone2 = ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_2.webp");
-        images.add(iphone1);
-        images.add(iphone2);
-
         ProductDto productDto = new ProductDto(
                 "samsung",
                 81,
@@ -216,7 +193,7 @@ public class ProductServiceImplementationTest {
                 0.92,
                 new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2024-08-15").getTime()),
                 "1013f7a0-0017-4c21-872f-c014914e6834",
-                images,
+                List.of("samsung_image_1", "samsung_image_2"),
                 false
         );
 
@@ -234,18 +211,13 @@ public class ProductServiceImplementationTest {
         assertEquals(0.92, product.getDiscountRate());
         assertEquals("2024-08-15", product.getDiscountDate().toString());
         assertEquals("1013f7a0-0017-4c21-872f-c014914e6834", product.getShopId());
-        assertEquals(images.get(0), product.getImages().get(0));
-        assertEquals(images.get(1), product.getImages().get(1));
+        assertEquals(List.of("samsung_image_1", "samsung_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 
     @Test
     @Transactional
     public void update_by_id() throws IOException, ParseException {
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_1.png"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_2.png")
-        );
         ProductDto productDto = new ProductDto(
                 "iphone",
                 90,
@@ -254,7 +226,7 @@ public class ProductServiceImplementationTest {
                 0.87,
                 new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2024-07-31").getTime()),
                 "1013f7a0-0017-4c21-872f-c014914e6834",
-                images,
+                List.of("xiaomi_image_1", "xiaomi_image_2"),
                 false
         );
         productService.updateById("6874ada1-747f-41a7-bb9a-613d2ec0ce1d", productDto);
@@ -271,8 +243,7 @@ public class ProductServiceImplementationTest {
         assertEquals(0.87, product.getDiscountRate());
         assertEquals("2024-07-31", product.getDiscountDate().toString());
         assertEquals("1013f7a0-0017-4c21-872f-c014914e6834", product.getShopId());
-        assertEquals(images.get(0), product.getImages().get(0));
-        assertEquals(images.get(1), product.getImages().get(1));
+        assertEquals(List.of("xiaomi_image_1", "xiaomi_image_2"), product.getImages());
         assertFalse(product.isDeleted());
     }
 

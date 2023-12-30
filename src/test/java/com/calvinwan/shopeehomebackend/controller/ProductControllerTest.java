@@ -1,6 +1,5 @@
 package com.calvinwan.shopeehomebackend.controller;
 
-import com.calvinwan.shopeehomebackend.ImageBase64Converter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,12 +12,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -35,11 +32,22 @@ public class ProductControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/product")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new String(Files.readAllBytes(Paths.get("src/test/resources/img/6_samsung/samsung.json"))));
+                .content("""
+                        {
+                            "name": "samsung",
+                            "amount": 81,
+                            "price": 31200,
+                            "description": "This is samsung",
+                            "discountRate": 0.92,
+                            "discountDate": "2024-08-15",
+                            "shopId": "1013f7a0-0017-4c21-872f-c014914e6834",
+                            "images": [
+                                "samsung_image_1",
+                                "samsung_image_2"
+                            ],
+                            "isDeleted": false
+                        }""");
 
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_1.webp")
-        );
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201))
@@ -52,7 +60,8 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountRate").value(0.92))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountDate").value("2024-08-15"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.shopId").value("1013f7a0-0017-4c21-872f-c014914e6834"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_1.webp")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value("samsung_image_1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.images[1]").value("samsung_image_2"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();
     }
@@ -73,8 +82,8 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountRate").value(0.87))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountDate").value("2024-07-31"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.shopId").value("1013f7a0-0017-4c21-872f-c014914e6834"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.images[1]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value("iphone_image_1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.images[1]").value("iphone_image_2"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();
     }
@@ -165,7 +174,7 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("iphone"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.finalPrice").value(32103))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.sales").value(27))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.image").value(ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.image").value("iphone_image_1"))
                 .andReturn();
     }
 
@@ -185,7 +194,21 @@ public class ProductControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .put("/product/6874ada1-747f-41a7-bb9a-613d2ec0ce1d")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new String(Files.readAllBytes(Paths.get("src/test/resources/img/6_samsung/samsung.json"))));
+                .content("""
+                        {
+                            "name": "samsung",
+                            "amount": 81,
+                            "price": 31200,
+                            "description": "This is samsung",
+                            "discountRate": 0.92,
+                            "discountDate": "2024-08-15",
+                            "shopId": "1013f7a0-0017-4c21-872f-c014914e6834",
+                            "images": [
+                                "samsung_image_1",
+                                "samsung_image_2"
+                            ],
+                            "isDeleted": false
+                        }""");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
@@ -198,7 +221,7 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountRate").value(0.92))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.discountDate").value("2024-08-15"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.shopId").value("1013f7a0-0017-4c21-872f-c014914e6834"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value(ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_1.webp")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.images[0]").value("samsung_image_1"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.deleted").value(false))
                 .andReturn();
     }
@@ -209,7 +232,21 @@ public class ProductControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .put("/product/wrong123")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new String(Files.readAllBytes(Paths.get("src/test/resources/img/6_samsung/samsung.json"))));
+                .content("""
+                        {
+                            "name": "samsung",
+                            "amount": 81,
+                            "price": 31200,
+                            "description": "This is samsung",
+                            "discountRate": 0.92,
+                            "discountDate": "2024-08-15",
+                            "shopId": "1013f7a0-0017-4c21-872f-c014914e6834",
+                            "images": [
+                                "samsung_image_1",
+                                "samsung_image_2"
+                            ],
+                            "isDeleted": false
+                        }""");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(404))

@@ -24,11 +24,6 @@ public class ProductServiceImplementation implements ProductService {
 
     @Override
     public String insert(ProductDto productDto) {
-        List<String> images = productDto.getImages();
-        for (int i = 0; i < images.size(); i++) {
-            String image = images.get(i);
-            images.set(i, image);
-        }
         return productDao.insert(productDto);
     }
 
