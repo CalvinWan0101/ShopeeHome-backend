@@ -90,7 +90,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void get_by_name() throws Exception {
+    public void get_id_by_name() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/product/id/iphone");
 
@@ -101,7 +101,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void get_by_name_with_uncompleted_name() throws Exception {
+    public void get_id_by_name_with_uncompleted_name() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/product/id/i");
 
@@ -114,7 +114,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void get_by_name_not_found() throws Exception {
+    public void get_id_by_name_not_found() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/product/name/wrong123");
 
@@ -239,6 +239,17 @@ public class ProductControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(404))
+                .andReturn();
+    }
+
+    @Test
+    @Transactional
+    public void delete_product_by_id() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/product/6874ada1-747f-41a7-bb9a-613d2ec0ce1d");
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(204))
                 .andReturn();
     }
 }
