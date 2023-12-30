@@ -55,6 +55,6 @@ CREATE TABLE product_image
 (
     product_id  VARCHAR(50) REFERENCES product (id),
     image_order INT   NOT NULL,
-    image       bytea NOT NULL,
+    image       VARCHAR(100000000) NOT NULL,
     PRIMARY KEY (product_id, image_order)
 );

@@ -40,8 +40,7 @@ public class ProductDaoImplementation implements ProductDao {
             Map<String, Object> mapImage = new HashMap<>();
             mapImage.put("id", map.get("id"));
             mapImage.put("imageOrder", i + 1);
-            byte[] decodedImage = Base64.getMimeDecoder().decode(images.get(i));
-            mapImage.put("image", decodedImage);
+            mapImage.put("image", images.get(i));
             jdbcTemplate.update(sqlImage, mapImage);
         }
 
@@ -60,13 +59,8 @@ public class ProductDaoImplementation implements ProductDao {
         Product product = products.get(0);
 
         String sqlImage = "SELECT image FROM product_image WHERE product_id = :id ORDER BY image_order";
-        List<byte[]> images = jdbcTemplate.queryForList(sqlImage, map, byte[].class);
-        List<String> base64Images = new ArrayList<>();
-        for (byte[] image : images) {
-            base64Images.add(Base64.getEncoder().encodeToString(image));
-        }
-        product.setImages(base64Images);
-
+        List<String> images = jdbcTemplate.queryForList(sqlImage, map, String.class);
+        product.setImages(images);
         return product;
     }
 
@@ -83,12 +77,8 @@ public class ProductDaoImplementation implements ProductDao {
             String sqlImage = "SELECT image FROM product_image WHERE product_id = :id ORDER BY image_order";
             Map<String, Object> mapImage = new HashMap<>();
             mapImage.put("id", product.getId());
-            List<byte[]> images = jdbcTemplate.queryForList(sqlImage, mapImage, byte[].class);
-            List<String> base64Images = new ArrayList<>();
-            for (byte[] image : images) {
-                base64Images.add(Base64.getEncoder().encodeToString(image));
-            }
-            product.setImages(base64Images);
+            List<String> images = jdbcTemplate.queryForList(sqlImage, mapImage, String.class);
+            product.setImages(images);
         }
         return products;
     }
@@ -133,8 +123,7 @@ public class ProductDaoImplementation implements ProductDao {
             Map<String, Object> mapImage = new HashMap<>();
             mapImage.put("id", map.get("id"));
             mapImage.put("imageOrder", i + 1);
-            byte[] decodedImage = Base64.getDecoder().decode(images.get(i));
-            mapImage.put("image", decodedImage);
+            mapImage.put("image", images.get(i));
             jdbcTemplate.update(sqlImage, mapImage);
         }
     }

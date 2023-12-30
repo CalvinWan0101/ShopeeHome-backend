@@ -25,94 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql(scripts = "/database/data.sql")
 public class ProductDaoImplementationTest {
 
-    @BeforeEach
-    public void beforeEach() throws IOException, ParseException {
-        List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg")
-        );
-        ProductDto productDto = new ProductDto(
-                "iphone",
-                90,
-                36900,
-                "This is iphone",
-                0.87,
-                new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2024-07-31").getTime()),
-                "1013f7a0-0017-4c21-872f-c014914e6834",
-                images,
-                false
-        );
-        productDao.updateById("6874ada1-747f-41a7-bb9a-613d2ec0ce1d", productDto);
-
-        images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_1.png"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/2_xiaomi/xiaomi_2.png")
-        );
-        productDto = new ProductDto(
-                "xiaomi",
-                140,
-                19999,
-                "This is xiaomi",
-                0.9,
-                new Date(new SimpleDateFormat("yyyy-MM-dd").parse("2024-06-30").getTime()),
-                "1013f7a0-0017-4c21-872f-c014914e6834",
-                images,
-                false
-        );
-        productDao.updateById("8c883a21-fad1-43af-8b15-54b2c1c7a70e", productDto);
-
-        images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/3_tissue/tissue_1.webp"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/3_tissue/tissue_2.webp")
-        );
-        productDto = new ProductDto(
-                "tissue",
-                52123,
-                100,
-                "This is tissue",
-                null,
-                null,
-                "f0694ecf-6282-48f9-a401-49eb08067ce0",
-                images,
-                false
-        );
-        productDao.updateById("acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3", productDto);
-
-        images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_1.webp"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_2.webp")
-        );
-        productDto = new ProductDto(
-                "toothbrush",
-                279123,
-                50,
-                "This is toothbrush",
-                null,
-                null,
-                "f0694ecf-6282-48f9-a401-49eb08067ce0",
-                images,
-                false
-        );
-        productDao.updateById("9595f97a-bf11-488a-8c15-9edf4db1c450", productDto);
-
-        images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/5_backpack/backpack_1.webp"),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/5_backpack/backpack_2.webp")
-        );
-        productDto = new ProductDto(
-                "backpack",
-                297,
-                2100,
-                "This is backpack",
-                null,
-                null,
-                "f0694ecf-6282-48f9-a401-49eb08067ce0",
-                images,
-                true
-        );
-        productDao.updateById("4f366b46-50ea-42d9-8216-e677f43b1819", productDto);
-    }
-
     @Autowired
     private ProductDao productDao;
 
@@ -121,8 +33,8 @@ public class ProductDaoImplementationTest {
         Product product = productDao.getById("6874ada1-747f-41a7-bb9a-613d2ec0ce1d");
 
         List<String> images = List.of(
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg").toString(),
-                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg").toString()
+                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_1.jpg"),
+                ImageBase64Converter.imageToBase64("src/test/resources/img/1_iphone/iphone_2.jpg")
         );
         assertNotNull(product);
         assertEquals("6874ada1-747f-41a7-bb9a-613d2ec0ce1d", product.getId());
@@ -197,8 +109,8 @@ public class ProductDaoImplementationTest {
         assertEquals(34126, product.getSales());
         assertEquals(50, product.getPrice());
         assertEquals("This is toothbrush", product.getDescription());
-        assertNull(product.getDiscountRate());
-        assertNull(product.getDiscountDate());
+        assertEquals(0.1, product.getDiscountRate());
+        assertEquals("2023-08-07", product.getDiscountDate().toString());
         assertEquals("f0694ecf-6282-48f9-a401-49eb08067ce0", product.getShopId());
         assertEquals(images, product.getImages());
         assertFalse(product.isDeleted());
