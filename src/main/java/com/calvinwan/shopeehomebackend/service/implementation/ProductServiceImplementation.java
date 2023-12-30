@@ -58,6 +58,9 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public ProductPreviewDto getPreviewById(String id) {
         Product product = productDao.getById(id);
+        if (product == null) {
+            return null;
+        }
         int finalPrice = product.getPrice();
         if (product.getDiscountRate() != null && product.getDiscountDate().after(new Date(System.currentTimeMillis()))) {
             finalPrice = (int) (product.getPrice() * product.getDiscountRate());

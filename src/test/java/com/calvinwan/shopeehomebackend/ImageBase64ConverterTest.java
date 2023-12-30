@@ -13,8 +13,6 @@ class ImageBase64ConverterTest {
         String expect = ImageBase64Converter.imageToBase64("src/test/resources/img/test/test.jpg");
         String result = ImageBase64Converter.imageToBase64("src/test/resources/img/test/test_copy.jpg");
         assertEquals(expect, result);
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new java.io.File("src/test/resources/img/test/test.json"), expect);
     }
 
     @Test
@@ -23,7 +21,13 @@ class ImageBase64ConverterTest {
         ImageBase64Converter.base64ToImage(expect, "src/test/resources/img/test/test_program_copy.jpg");
         String result = ImageBase64Converter.imageToBase64("src/test/resources/img/test/test_program_copy.jpg");
         assertEquals(expect, result);
-        System.out.println(ImageBase64Converter.imageToBase64("src/test/resources/img/4_toothbrush/toothbrush_2.webp"));
     }
+
+//    @Test
+//    public void create_samsung_json() throws IOException {
+//        String expect = ImageBase64Converter.imageToBase64("src/test/resources/img/6_samsung/samsung_1.webp");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.writeValue(new java.io.File("src/test/resources/img/6_samsung/samsung.json"), expect);
+//    }
 
 }
