@@ -11,4 +11,6 @@ public interface ShopDao {
     Shop getByEmail(String email);
 
     void updateById(String id, ShopDto shopDto);
+
+    void updateAvatarAndBackgroundById(String id, String avatar, String background);
 }

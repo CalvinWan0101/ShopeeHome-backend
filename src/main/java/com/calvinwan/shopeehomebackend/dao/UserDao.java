@@ -11,4 +11,6 @@ public interface UserDao {
     User getByEmail(String email);
 
     void updateById(String id, UserDto userDto);
+
+    void updateAvatarById(String id, String avatar);
 }

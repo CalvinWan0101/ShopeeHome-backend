@@ -81,4 +81,14 @@ public class ShopDaoImplementation implements ShopDao {
         map.put("isDeleted", shopDto.isDeleted());
         jdbcTemplate.update(sql, map);
     }
+
+    @Override
+    public void updateAvatarAndBackgroundById(String id, String avatar, String background) {
+        String sql = "UPDATE shop SET avatar = :avatar, background = :background WHERE id = :id";
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("avatar", avatar);
+        map.put("background", background);
+        jdbcTemplate.update(sql, map);
+    }
 }

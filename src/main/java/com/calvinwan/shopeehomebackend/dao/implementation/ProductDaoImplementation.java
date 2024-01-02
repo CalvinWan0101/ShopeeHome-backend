@@ -139,4 +139,21 @@ public class ProductDaoImplementation implements ProductDao {
         map.put("id", id);
         jdbcTemplate.update(sql, map);
     }
+
+    @Override
+    public void updateImagesById(String id, List<String> images) {
+        String sql = "DELETE FROM product_image WHERE product_id = :id";
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        jdbcTemplate.update(sql, map);
+
+        String sqlImage = "INSERT INTO product_image (product_id, image_order, image) VALUES (:id, :imageOrder, :image)";
+        for (int i = 0; i < images.size(); i++) {
+            Map<String, Object> mapImage = new HashMap<>();
+            mapImage.put("id", map.get("id"));
+            mapImage.put("imageOrder", i + 1);
+            mapImage.put("image", images.get(i));
+            jdbcTemplate.update(sqlImage, mapImage);
+        }
+    }
 }

@@ -107,4 +107,15 @@ public class UserDaoImplementation implements UserDao {
             jdbcTemplate.update(sqlAddress, mapAddress);
         }
     }
+
+    @Override
+    public void updateAvatarById(String id, String avatar) {
+        String sql = "UPDATE myuser SET avatar = :avatar WHERE id = :id";
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("avatar", avatar);
+        jdbcTemplate.update(sql, map);
+    }
+
+
 }

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public class User {
-
     private String id;
     private String email;
     @JsonIgnore
@@ -15,7 +14,6 @@ public class User {
     private String phoneNumber;
     private String avatar;
     private boolean isDeleted;
-
     private List<String> addresses;
 
     public User(String id, String email, String password, String name, String phoneNumber, String avatar, boolean isDeleted) {

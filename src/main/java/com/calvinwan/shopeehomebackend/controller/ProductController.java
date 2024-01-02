@@ -36,7 +36,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @GetMapping("/product/id/{name}") // TODO: change to give the simple information
+    @GetMapping("/product/id/{name}")
     public ResponseEntity<List<String>> getByName(@PathVariable String name) {
         List<String> ids = productService.getIdByName(name);
 

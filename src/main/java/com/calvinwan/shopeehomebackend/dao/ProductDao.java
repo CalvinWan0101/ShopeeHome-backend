@@ -10,6 +10,7 @@ public interface ProductDao {
     public String insert(ProductDto productDto);
 
     Product getById(String id);
+
     List<String> getIdByName(String name);
 
     List<ProductNameDto> getAllName();
@@ -21,4 +22,6 @@ public interface ProductDao {
     void updateSalesById(String id, int productSales);
 
     void deleteById(String id);
+
+    void updateImagesById(String id, List<String> images);
 }
