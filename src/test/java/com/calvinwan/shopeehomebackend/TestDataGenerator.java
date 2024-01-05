@@ -29,7 +29,7 @@ public class TestDataGenerator {
     public void user_information() throws IOException {
         UserDto userDto = new UserDto(
                 "user1@gmail.com",
-                "user1",
+                "24c9e15e52afc47c225b757e7bee1f9d",
                 "海綿寶寶",
                 "0909001001",
                 ImageBase64Converter.imageToBase64("src/test/resources/image/user/user1.jpg"),
