@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 public class SeasoningCouponDaoImplementation implements SeasoningCouponDao {
@@ -125,7 +122,7 @@ public class SeasoningCouponDaoImplementation implements SeasoningCouponDao {
                 "FROM coupon c " +
                 "JOIN seasoning_coupon s ON c.id = s.coupon_id " +
                 "LEFT JOIN user_has_coupon uc ON c.id = uc.coupon_id AND uc.user_id = :userId " +
-                "WHERE c.shop_id = :shopId AND c.is_deleted = false" +
+                "WHERE c.shop_id = :shopId AND c.is_deleted = false AND c.date >= CURRENT_DATE" +
                 " ORDER BY s.rate ASC";
         Map<String, Object> map = new HashMap<>();
         map.put("shopId", shopId);

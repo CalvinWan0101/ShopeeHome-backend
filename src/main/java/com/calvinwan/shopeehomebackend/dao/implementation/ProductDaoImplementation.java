@@ -58,6 +58,11 @@ public class ProductDaoImplementation implements ProductDao {
         }
         Product product = products.get(0);
 
+        if (product.getDiscountDate() != null && product.getDiscountDate().before(new Date(System.currentTimeMillis()))) {
+            product.setDiscountRate(null);
+            product.setDiscountDate(null);
+        }
+
         String sqlImage = "SELECT image FROM product_image WHERE product_id = :id ORDER BY image_order";
         List<String> images = jdbcTemplate.queryForList(sqlImage, map, String.class);
         product.setImages(images);

@@ -91,8 +91,8 @@ public class ProductDaoImplementationTest {
         assertEquals(34126, product.getSales());
         assertEquals(50, product.getPrice());
         assertEquals("This is toothbrush", product.getDescription());
-        assertEquals(0.1, product.getDiscountRate());
-        assertEquals("2023-08-07", product.getDiscountDate().toString());
+        assertNull(product.getDiscountRate());
+        assertNull(product.getDiscountDate());
         assertEquals("f0694ecf-6282-48f9-a401-49eb08067ce0", product.getShopId());
         assertEquals(List.of("toothbrush_image_1", "toothbrush_image_2"), product.getImages());
         assertFalse(product.isDeleted());
