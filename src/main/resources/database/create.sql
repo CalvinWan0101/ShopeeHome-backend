@@ -61,3 +61,36 @@ CREATE TABLE product_image
     image       VARCHAR(10000000) NOT NULL,
     PRIMARY KEY (product_id, image_order)
 );
+
+CREATE TABLE coupon
+(
+    id         VARCHAR(50) NOT NULL PRIMARY KEY,
+    date       DATE,
+    shop_id    VARCHAR(50) REFERENCES shop (id),
+    is_deleted BOOLEAN     NOT NULL
+);
+
+CREATE TABLE shipping_coupon
+(
+    coupon_id      VARCHAR(50) REFERENCES coupon (id),
+    shipping_limit INT NOT NULL,
+    PRIMARY KEY (coupon_id)
+);
+
+CREATE TABLE seasoning_coupon
+(
+    coupon_id VARCHAR(50) REFERENCES coupon (id),
+    rate      DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (coupon_id)
+);
+
+CREATE TABLE user_has_coupon
+(
+    user_id   VARCHAR(50) REFERENCES myuser (id),
+    coupon_id VARCHAR(50) REFERENCES coupon (id),
+    is_used   BOOLEAN NOT NULL,
+    PRIMARY KEY (user_id, coupon_id)
+);
+
+---------------------------------------------------
+
