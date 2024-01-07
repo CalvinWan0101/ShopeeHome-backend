@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -117,5 +118,25 @@ public class TestDataGenerator {
                 ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/toothbrush/toothbrush_1.webp"),
                 ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/toothbrush/toothbrush_2.webp")
         ));
+    }
+
+    @Test
+    public void shop1_create_product() throws IOException {
+        // samsung
+        productDao.insert(new ProductDto(
+                "samsung s21",
+                89,
+                26900,
+                "三星（Samsung）是一家全球知名的電子產品製造商，其手機系列廣受用戶歡迎。三星手機以卓越的技術創新、高品質的製造工藝和多樣化的功能而聞名。透過不斷的研發和設計，三星致力於提供先進的智能手機體驗。\n" +
+                        "三星手機擁有令人印象深刻的顯示技術，其 Super AMOLED 螢幕呈現出生動、清晰且色彩豐富的影像，為用戶帶來極致的視覺享受。其攝影技術也一直處於行業領先地位，搭載高像素鏡頭、先進的影像處理技術，用戶能夠捕捉清晰、細緻的照片和錄製高質量的影片。\n" +
+                        "在性能方面，三星手機通常配備強大的處理器和大容量的內存，以確保流暢運行各種應用和多任務處理。此外，其電池續航能力也得到了優化，使用戶能夠長時間使用手機而無需擔心電量問題。",
+                0.91,
+                Date.valueOf("2021-06-01"),
+                "1013f7a0-0017-4c21-872f-c014914e6834",
+                List.of(
+                        ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop1/samsung/samsung_1.webp"),
+                        ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop1/samsung/samsung_2.webp")
+                ),
+                false));
     }
 }
