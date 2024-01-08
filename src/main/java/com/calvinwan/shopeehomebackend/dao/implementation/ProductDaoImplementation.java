@@ -71,7 +71,7 @@ public class ProductDaoImplementation implements ProductDao {
 
     @Override
     public List<String> getIdByName(String name) {
-        String sql = "SELECT id FROM product WHERE name LIKE :name AND is_deleted = FALSE";
+        String sql = "SELECT id FROM product WHERE LOWER(name) LIKE LOWER(:name) AND is_deleted = FALSE";
         Map<String, Object> map = new HashMap<>();
         map.put("name", "%" + name + "%");
         List<String> ids = jdbcTemplate.queryForList(sql, map, String.class);
