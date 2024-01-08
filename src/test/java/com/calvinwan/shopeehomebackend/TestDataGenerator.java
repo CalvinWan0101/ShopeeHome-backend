@@ -54,7 +54,7 @@ public class TestDataGenerator {
     public void shop_information() throws IOException {
         ShopDto shopDto = new ShopDto(
                 "shop1@gmail.com",
-                "shop1",
+                "12186fe8a7b1dd053d95e8d3379c7271",
                 "華光商場",
                 "0909001001",
                 "臺北市中正區市民大道三段8號",
@@ -73,7 +73,7 @@ public class TestDataGenerator {
 
         shopDto = new ShopDto(
                 "shop2@gmail.com",
-                "shop2",
+                "5370c7bc26a91164afc88362b70fce08",
                 "福樂家",
                 "0909002002",
                 "台北市大同區酒泉街105號",
