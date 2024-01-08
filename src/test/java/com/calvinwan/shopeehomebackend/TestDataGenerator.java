@@ -645,6 +645,7 @@ public class TestDataGenerator {
                 false));
     }
 
+    @Test
     public void shop2_create_product() throws IOException {
         // 洗衣精
         productDao.insert(new ProductDto(
@@ -678,7 +679,7 @@ public class TestDataGenerator {
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/shower_gel/shower_gel_3.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/shower_gel/shower_gel_4.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/shower_gel/shower_gel_5.jpg")
-                        ),
+                ),
                 false));
 
         productDao.insert(new ProductDto(
@@ -695,7 +696,7 @@ public class TestDataGenerator {
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/cookies/cookies_3.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/cookies/cookies_4.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/cookies/cookies_5.jpg")
-                        ),
+                ),
                 false));
 
         productDao.insert(new ProductDto(
@@ -725,7 +726,7 @@ public class TestDataGenerator {
                 Date.valueOf("2021-09-05"),
                 "f0694ecf-6282-48f9-a401-49eb08067ce0",
                 List.of(
-                        ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/chocolate/chocolate_11.jpg"),
+                        ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/chocolate/chocolate_1.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/chocolate/chocolate_2.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/chocolate/chocolate_3.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/chocolate/chocolate_4.jpg"),
@@ -1105,7 +1106,7 @@ public class TestDataGenerator {
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/sketchbook/sketchbook_3.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/sketchbook/sketchbook_4.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/sketchbook/sketchbook_5.jpg")
-                        ),
+                ),
                 false));
 
         productDao.insert(new ProductDto(
@@ -1276,7 +1277,7 @@ public class TestDataGenerator {
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/folding_chair/folding_chair_3.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/folding_chair/folding_chair_4.jpg"),
                         ImageBase64Converter.imageToBase64("src/test/resources/image/product/shop2/folding_chair/folding_chair_5.jpg")
-                        ),
+                ),
                 false));
 
         productDao.insert(new ProductDto(
