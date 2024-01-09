@@ -18,7 +18,7 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
 
     @Override
     public ShoppingCart getShoppingCart(String userId) {
-        String sql = "SELECT p.shop_id, s.name AS shop_name, sc.product_id, p.name AS product_name, i.image, sc.quantity, p.price, p.discount_rate, p.discount_date " +
+        String sql = "SELECT p.shop_id, s.name AS shop_name, sc.product_id, p.name AS product_name, i.image, sc.quantity, sc.quantity_limit, p.price, p.discount_rate, p.discount_date " +
                 "FROM shop s " +
                 "JOIN product p ON s.id = p.shop_id " +
                 "JOIN product_image i ON p.id = i.product_id " +
@@ -34,6 +34,7 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
                     rs.getString("product_name"),
                     rs.getString("image"),
                     rs.getInt("quantity"),
+                    rs.getInt("quantity_limit"),
                     rs.getInt("price"),
                     rs.getDouble("discount_rate"),
                     rs.getDate("discount_date"));
@@ -71,6 +72,7 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
                     shoppingCartDto.getProductName(),
                     shoppingCartDto.getProductImage(),
                     shoppingCartDto.getQuantity(),
+                    shoppingCartDto.getQuantityLimit(),
                     price
             );
 

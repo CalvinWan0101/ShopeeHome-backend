@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Sql(scripts = "/database/data.sql")
-public class ShoppingCartControllerImplementationTest {
+public class ShoppingCartServiceImplementationTest {
 
     @Autowired
     ShoppingCartService shoppingCartService;
@@ -41,12 +41,14 @@ public class ShoppingCartControllerImplementationTest {
         assertEquals("iphone", product1.getName());
         assertEquals("iphone_image_1", product1.getImage());
         assertEquals(1, product1.getQuantity());
+        assertEquals(90, product1.getQuantityLimit());
         assertEquals(32103, product1.getPrice());
         product2 = shop1.getProducts().get(1);
         assertEquals("8c883a21-fad1-43af-8b15-54b2c1c7a70e", product2.getId());
         assertEquals("xiaomi", product2.getName());
         assertEquals("xiaomi_image_1", product2.getImage());
         assertEquals(2, product2.getQuantity());
+        assertEquals(140, product2.getQuantityLimit());
         assertEquals(17999, product2.getPrice());
 
         product1 = shop2.getProducts().get(0);
@@ -54,12 +56,14 @@ public class ShoppingCartControllerImplementationTest {
         assertEquals("tissue", product1.getName());
         assertEquals("tissue_image_1", product1.getImage());
         assertEquals(3, product1.getQuantity());
+        assertEquals(52123, product1.getQuantityLimit());
         assertEquals(100, product1.getPrice());
         product2 = shop2.getProducts().get(1);
         assertEquals("9595f97a-bf11-488a-8c15-9edf4db1c450", product2.getId());
         assertEquals("toothbrush", product2.getName());
         assertEquals("toothbrush_image_1", product2.getImage());
         assertEquals(4, product2.getQuantity());
+        assertEquals(279123, product2.getQuantityLimit());
         assertEquals(50, product2.getPrice());
     }
 
@@ -92,12 +96,14 @@ public class ShoppingCartControllerImplementationTest {
         assertEquals("iphone", product1.getName());
         assertEquals("iphone_image_1", product1.getImage());
         assertEquals(100, product1.getQuantity());
+        assertEquals(90, product1.getQuantityLimit());
         assertEquals(32103, product1.getPrice());
         product2 = shop1.getProducts().get(1);
         assertEquals("8c883a21-fad1-43af-8b15-54b2c1c7a70e", product2.getId());
         assertEquals("xiaomi", product2.getName());
         assertEquals("xiaomi_image_1", product2.getImage());
         assertEquals(2, product2.getQuantity());
+        assertEquals(140, product2.getQuantityLimit());
         assertEquals(17999, product2.getPrice());
 
         product1 = shop2.getProducts().get(0);
@@ -105,6 +111,7 @@ public class ShoppingCartControllerImplementationTest {
         assertEquals("toothbrush", product1.getName());
         assertEquals("toothbrush_image_1", product1.getImage());
         assertEquals(4, product1.getQuantity());
+        assertEquals(279123, product1.getQuantityLimit());
         assertEquals(50, product1.getPrice());
     }
 

@@ -9,17 +9,19 @@ public class ShoppingCartDto {
     String productName;
     String productImage;
     int quantity;
+    int quantityLimit;
     int price;
     Double discountRate;
     Date discountDate;
 
-    public ShoppingCartDto(String shopId, String shopName, String productId, String productName, String productImage, int quantity, int price, Double discountRate, Date discountDate) {
+    public ShoppingCartDto(String shopId, String shopName, String productId, String productName, String productImage, int quantity, int quantityLimit, int price, Double discountRate, Date discountDate) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
         this.quantity = quantity;
+        this.quantityLimit = quantityLimit;
         this.price = price;
         this.discountRate = discountRate;
         this.discountDate = discountDate;
@@ -71,6 +73,14 @@ public class ShoppingCartDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getQuantityLimit() {
+        return quantityLimit;
+    }
+
+    public void setQuantityLimit(int quantityLimit) {
+        this.quantityLimit = quantityLimit;
     }
 
     public int getPrice() {

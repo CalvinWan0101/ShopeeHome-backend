@@ -5,13 +5,15 @@ public class ShoppingCartProduct {
     String name;
     String image;
     int quantity;
+    int quantityLimit;
     int price;
 
-    public ShoppingCartProduct(String id, String name, String image, int quantity, int price) {
+    public ShoppingCartProduct(String id, String name, String image, int quantity, int quantityLimit, int price) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.quantity = quantity;
+        this.quantityLimit = quantityLimit;
         this.price = price;
     }
 
@@ -45,6 +47,14 @@ public class ShoppingCartProduct {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getQuantityLimit() {
+        return quantityLimit;
+    }
+
+    public void setQuantityLimit(int quantityLimit) {
+        this.quantityLimit = quantityLimit;
     }
 
     public int getPrice() {
