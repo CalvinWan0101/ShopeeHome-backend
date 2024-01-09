@@ -10,6 +10,8 @@ FROM seasoning_coupon;
 DELETE
 FROM user_has_coupon;
 DELETE
+FROM in_shopping_cart;
+DELETE
 FROM myuser;
 DELETE
 FROM product;
@@ -141,3 +143,11 @@ VALUES ('efbec3f1-563b-4b71-892b-a6db85bf76dc', 0.1),
        ('66fbc0ec-8357-43b6-89dc-dc8082c5dcca', 0.1),
        ('22960254-75b3-47c2-bbdc-e596a9ad3a4a', 0.2),
        ('f62870eb-1d71-48f4-ba28-471a80f62f67', 0.1);
+
+-- in_shopping_cart
+INSERT INTO in_shopping_cart (user_id, product_id, quantity)
+VALUES ('30e7e267-c791-424a-a94b-fa5e695d27e7', '6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 1),
+       ('30e7e267-c791-424a-a94b-fa5e695d27e7', '8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2),
+       ('30e7e267-c791-424a-a94b-fa5e695d27e7', 'acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 3),
+       ('30e7e267-c791-424a-a94b-fa5e695d27e7', '9595f97a-bf11-488a-8c15-9edf4db1c450', 4),
+       ('30e7e267-c791-424a-a94b-fa5e695d27e7', '4f366b46-50ea-42d9-8216-e677f43b1819', 5);

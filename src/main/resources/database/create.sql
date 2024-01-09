@@ -94,3 +94,10 @@ CREATE TABLE user_has_coupon
 
 ---------------------------------------------------
 
+CREATE TABLE in_shopping_cart
+(
+    user_id    VARCHAR(50) REFERENCES myuser (id),
+    product_id VARCHAR(50) REFERENCES product (id),
+    quantity   INT NOT NULL,
+    PRIMARY KEY (user_id, product_id)
+);

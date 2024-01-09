@@ -7,6 +7,9 @@ public class ShoppingCartShop {
     String name;
     List<ShoppingCartProduct> products;
 
+    public ShoppingCartShop() {
+    }
+
     public ShoppingCartShop(String id, String name, List<ShoppingCartProduct> products) {
         this.id = id;
         this.name = name;

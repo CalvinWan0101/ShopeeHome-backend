@@ -5,6 +5,9 @@ import java.util.List;
 public class ShoppingCart {
     List<ShoppingCartShop> shops;
 
+    public ShoppingCart() {
+    }
+
     public ShoppingCart(List<ShoppingCartShop> shops) {
         this.shops = shops;
     }

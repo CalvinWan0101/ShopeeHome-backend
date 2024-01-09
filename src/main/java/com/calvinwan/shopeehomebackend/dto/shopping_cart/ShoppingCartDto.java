@@ -9,17 +9,18 @@ public class ShoppingCartDto {
     String productName;
     String productImage;
     int quantity;
-
+    int price;
     Double discountRate;
     Date discountDate;
 
-    public ShoppingCartDto(String shopId, String shopName, String productId, String productName, String productImage, int quantity, Double discountRate, Date discountDate) {
+    public ShoppingCartDto(String shopId, String shopName, String productId, String productName, String productImage, int quantity, int price, Double discountRate, Date discountDate) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.productId = productId;
         this.productName = productName;
         this.productImage = productImage;
         this.quantity = quantity;
+        this.price = price;
         this.discountRate = discountRate;
         this.discountDate = discountDate;
     }
@@ -70,6 +71,14 @@ public class ShoppingCartDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public Double getDiscountRate() {
