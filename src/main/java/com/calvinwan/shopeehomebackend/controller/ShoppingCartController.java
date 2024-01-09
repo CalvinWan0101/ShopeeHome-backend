@@ -1,6 +1,7 @@
 package com.calvinwan.shopeehomebackend.controller;
 
 import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCart;
+import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCartSingleProduct;
 import com.calvinwan.shopeehomebackend.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,13 @@ public class ShoppingCartController {
                                                            @RequestBody ShoppingCart shoppingCart) {
         shoppingCartService.updateShoppingCart(userId, shoppingCart);
         ShoppingCart updatedShoppingCart = shoppingCartService.getShoppingCart(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedShoppingCart);
+    }
+
+    @PutMapping("/shopping_cart/product")
+    public ResponseEntity<ShoppingCart> addProductToShoppingCart(@RequestBody ShoppingCartSingleProduct shoppingCartSingleProduct) {
+        shoppingCartService.addProductToShoppingCart(shoppingCartSingleProduct);
+        ShoppingCart updatedShoppingCart = shoppingCartService.getShoppingCart(shoppingCartSingleProduct.getUserId());
         return ResponseEntity.status(HttpStatus.OK).body(updatedShoppingCart);
     }
 }

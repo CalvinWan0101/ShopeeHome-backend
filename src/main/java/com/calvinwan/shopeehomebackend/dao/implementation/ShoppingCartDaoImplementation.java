@@ -1,10 +1,7 @@
 package com.calvinwan.shopeehomebackend.dao.implementation;
 
 import com.calvinwan.shopeehomebackend.dao.ShoppingCartDao;
-import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCart;
-import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCartDto;
-import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCartProduct;
-import com.calvinwan.shopeehomebackend.dto.shopping_cart.ShoppingCartShop;
+import com.calvinwan.shopeehomebackend.dto.shopping_cart.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -103,6 +100,40 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
                 map.put("quantity", product.getQuantity());
                 jdbcTemplate.update(sql, map);
             }
+        }
+    }
+
+    @Override
+    public void addProductToShoppingCart(ShoppingCartSingleProduct shoppingCartSingleProduct) {
+        // check if the product is already in the shopping cart
+        String checkSql = "SELECT * FROM in_shopping_cart WHERE user_id = :user_id AND product_id = :product_id;";
+        Map<String, Object> checkMap = new HashMap<>();
+        checkMap.put("user_id", shoppingCartSingleProduct.getUserId());
+        checkMap.put("product_id", shoppingCartSingleProduct.getProductId());
+        List<ShoppingCartSingleProduct> shoppingCartSingleProducts = jdbcTemplate.query(checkSql, checkMap, (rs, rowNum) -> {
+            ShoppingCartSingleProduct shoppingCartSingleProduct1 = new ShoppingCartSingleProduct(
+                    rs.getString("user_id"),
+                    rs.getString("product_id"),
+                    rs.getInt("quantity")
+            );
+            return shoppingCartSingleProduct1;
+        });
+
+        // if the product is already in the shopping cart, update the quantity
+        if (!shoppingCartSingleProducts.isEmpty()) {
+            String updateSql = "UPDATE in_shopping_cart SET quantity = :quantity WHERE user_id = :user_id AND product_id = :product_id;";
+            Map<String, Object> updateMap = new HashMap<>();
+            updateMap.put("user_id", shoppingCartSingleProduct.getUserId());
+            updateMap.put("product_id", shoppingCartSingleProduct.getProductId());
+            updateMap.put("quantity", shoppingCartSingleProduct.getQuantity() + shoppingCartSingleProducts.get(0).getQuantity());
+            jdbcTemplate.update(updateSql, updateMap);
+        } else {
+            String sql = "INSERT INTO in_shopping_cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity);";
+            Map<String, Object> map = new HashMap<>();
+            map.put("user_id", shoppingCartSingleProduct.getUserId());
+            map.put("product_id", shoppingCartSingleProduct.getProductId());
+            map.put("quantity", shoppingCartSingleProduct.getQuantity());
+            jdbcTemplate.update(sql, map);
         }
     }
 
