@@ -117,3 +117,32 @@ CREATE TRIGGER set_quantity_limit_trigger
     ON in_shopping_cart
     FOR EACH ROW
 EXECUTE FUNCTION set_quantity_limit();
+
+---------------------------------------------------
+
+CREATE TABLE myorder
+(
+    id            VARCHAR(50)  NOT NULL PRIMARY KEY,
+    address       VARCHAR(100) NOT NULL,
+    start_time    DATE,
+    deliver_time  DATE,
+    total_price   INT          NOT NULL,
+    user_id       VARCHAR(50) REFERENCES myuser (id),
+    shipping_cost INT          NOT NULL
+);
+
+CREATE TABLE order_include_product
+(
+    order_id   VARCHAR(50) REFERENCES myorder (id),
+    product_id VARCHAR(50) REFERENCES product (id),
+    quantity   INT NOT NULL,
+    price      INT NOT NULL,
+    PRIMARY KEY (product_id, order_id)
+);
+
+CREATE TABLE order_use_coupon
+(
+    order_id  VARCHAR(50) REFERENCES myorder (id),
+    coupon_id VARCHAR(50) REFERENCES coupon (id),
+    PRIMARY KEY (order_id, coupon_id)
+);

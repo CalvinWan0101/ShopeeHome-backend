@@ -12,15 +12,21 @@ FROM user_has_coupon;
 DELETE
 FROM in_shopping_cart;
 DELETE
-FROM myuser;
+FROM order_include_product;
 DELETE
 FROM product;
+DELETE
+FROM order_use_coupon;
 DELETE
 FROM coupon;
 DELETE
 FROM shop;
 DELETE
 FROM admin;
+DELETE
+FROM myorder;
+DELETE
+FROM myuser;
 
 -- myuser
 INSERT INTO myuser (id, email, password, name, phone_number, avatar, is_deleted)
@@ -151,3 +157,28 @@ VALUES ('30e7e267-c791-424a-a94b-fa5e695d27e7', '6874ada1-747f-41a7-bb9a-613d2ec
        ('30e7e267-c791-424a-a94b-fa5e695d27e7', 'acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3', 3, 52123),
        ('30e7e267-c791-424a-a94b-fa5e695d27e7', '9595f97a-bf11-488a-8c15-9edf4db1c450', 4, 279123),
        ('30e7e267-c791-424a-a94b-fa5e695d27e7', '4f366b46-50ea-42d9-8216-e677f43b1819', 5, 297);
+
+-- myorder
+INSERT INTO myorder (id, address, start_time, deliver_time, total_price, user_id, shipping_cost)
+VALUES ('15aeafa1-2561-4098-ad07-e5d599c2ae3b', '比基尼環礁比奇堡貝殼街124號鳳梨屋', '2024-01-01', NULL, 100264,
+        '30e7e267-c791-424a-a94b-fa5e695d27e7', 60), -- no coupon
+       ('f9d01135-323e-479d-837a-889ab8916f49', '比基尼環礁比奇堡貝殼街124號鳳梨屋', NULL, NULL, 10080,
+        '30e7e267-c791-424a-a94b-fa5e695d27e7', 60), -- seasoning coupon 0.1
+       ('629af7fc-ffd9-4201-b18a-cd9096314f05', '比基尼環礁比奇堡貝殼街124號鳳梨屋', '2024-01-03', NULL, 100204,
+        '30e7e267-c791-424a-a94b-fa5e695d27e7', 0);
+-- shipping coupon
+
+-- order_user_coupon
+INSERT INTO order_use_coupon (order_id, coupon_id)
+VALUES ('f9d01135-323e-479d-837a-889ab8916f49', 'efbec3f1-563b-4b71-892b-a6db85bf76dc'),
+       ('629af7fc-ffd9-4201-b18a-cd9096314f05', '3bfd295f-3215-4585-b935-6e253ad1e54f');
+
+-- order_include_product
+INSERT INTO order_include_product (order_id, product_id, quantity, price)
+VALUES ('15aeafa1-2561-4098-ad07-e5d599c2ae3b', '6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 32103),
+       ('15aeafa1-2561-4098-ad07-e5d599c2ae3b', '8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 17999),
+       ('f9d01135-323e-479d-837a-889ab8916f49', '6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 32103),
+       ('f9d01135-323e-479d-837a-889ab8916f49', '8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 17999),
+       ('629af7fc-ffd9-4201-b18a-cd9096314f05', '6874ada1-747f-41a7-bb9a-613d2ec0ce1d', 2, 32103),
+       ('629af7fc-ffd9-4201-b18a-cd9096314f05', '8c883a21-fad1-43af-8b15-54b2c1c7a70e', 2, 17999);
+
