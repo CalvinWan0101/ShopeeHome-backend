@@ -334,6 +334,20 @@ public class OrderDaoImplementation implements OrderDao {
         map.put("coupon_id", orderCreateDto.getCouponId());
         jdbcTemplate.update(sql, map);
 
+        for (OrderProductDto orderProductDto : orderCreateDto.getProducts()) {
+            sql = "UPDATE product SET amount = amount - :quantity WHERE id = :product_id;";
+            map = new HashMap<>();
+            map.put("quantity", orderProductDto.getQuantity());
+            map.put("product_id", orderProductDto.getId());
+            jdbcTemplate.update(sql, map);
+
+            sql = "UPDATE product SET sales = sales + :quantity WHERE id = :product_id;";
+            map = new HashMap<>();
+            map.put("quantity", orderProductDto.getQuantity());
+            map.put("product_id", orderProductDto.getId());
+            jdbcTemplate.update(sql, map);
+        }
+
         return orderId;
     }
 
