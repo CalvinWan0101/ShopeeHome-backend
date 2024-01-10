@@ -46,6 +46,16 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
         for (ShoppingCartDto shoppingCartDto : shoppingCartDtos) {
             String shopId = shoppingCartDto.getShopId();
 
+            // if the quantity in the shopping cart is lower or equal to zero, delete the product from the shopping cart
+            if (shoppingCartDto.getQuantity() <= 0) {
+                String deleteSql = "DELETE FROM in_shopping_cart WHERE user_id = :user_id AND product_id = :product_id;";
+                Map<String, Object> deleteMap = new HashMap<>();
+                deleteMap.put("user_id", userId);
+                deleteMap.put("product_id", shoppingCartDto.getProductId());
+                jdbcTemplate.update(deleteSql, deleteMap);
+                continue;
+            }
+
             // If the shop is not in the map, add it
             if (!shopMap.containsKey(shopId)) {
                 shopMap.put(shopId, new ShoppingCartShop(
