@@ -15,7 +15,7 @@ public class ShoppingCartDaoImplementation implements ShoppingCartDao {
 
     @Override
     public ShoppingCart getShoppingCart(String userId) {
-        String sql = "SELECT p.shop_id, s.name AS shop_name, sc.product_id, p.name AS product_name, i.image, sc.quantity, sc.quantity_limit, p.price, p.discount_rate, p.discount_date " +
+        String sql = "SELECT p.shop_id, s.name AS shop_name, sc.product_id, p.name AS product_name, i.image, sc.quantity, p.amount AS quantity_limit, p.price, p.discount_rate, p.discount_date " +
                 "FROM shop s " +
                 "JOIN product p ON s.id = p.shop_id " +
                 "JOIN product_image i ON p.id = i.product_id " +

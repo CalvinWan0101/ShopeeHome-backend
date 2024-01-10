@@ -96,27 +96,11 @@ CREATE TABLE user_has_coupon
 
 CREATE TABLE in_shopping_cart
 (
-    user_id        VARCHAR(50) REFERENCES myuser (id),
-    product_id     VARCHAR(50) REFERENCES product (id),
-    quantity       INT NOT NULL,
-    quantity_limit INT NOT NULL,
+    user_id    VARCHAR(50) REFERENCES myuser (id),
+    product_id VARCHAR(50) REFERENCES product (id),
+    quantity   INT NOT NULL,
     PRIMARY KEY (user_id, product_id)
 );
-
-CREATE OR REPLACE FUNCTION set_quantity_limit()
-    RETURNS TRIGGER AS
-$$
-BEGIN
-    NEW.quantity_limit := (SELECT amount FROM product WHERE id = NEW.product_id);
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER set_quantity_limit_trigger
-    BEFORE INSERT OR UPDATE
-    ON in_shopping_cart
-    FOR EACH ROW
-EXECUTE FUNCTION set_quantity_limit();
 
 ---------------------------------------------------
 
