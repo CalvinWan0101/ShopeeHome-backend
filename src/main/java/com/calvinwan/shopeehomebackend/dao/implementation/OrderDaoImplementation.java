@@ -346,8 +346,13 @@ public class OrderDaoImplementation implements OrderDao {
             map.put("quantity", orderProductDto.getQuantity());
             map.put("product_id", orderProductDto.getId());
             jdbcTemplate.update(sql, map);
-        }
 
+            sql = "DELETE FROM in_shopping_cart WHERE user_id = :user_id AND product_id = :product_id;";
+            map = new HashMap<>();
+            map.put("user_id", orderCreateDto.getUserId());
+            map.put("product_id", orderProductDto.getId());
+            jdbcTemplate.update(sql, map);
+        }
         return orderId;
     }
 
