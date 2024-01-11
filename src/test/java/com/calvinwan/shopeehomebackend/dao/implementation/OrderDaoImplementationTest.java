@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -290,7 +291,7 @@ public class OrderDaoImplementationTest {
     public void shop_ship_product() {
         orderDao.shopShipProduct("15aeafa1-2561-4098-ad07-e5d599c2ae3b");
         Order order = orderDao.getOrderByOrderId("15aeafa1-2561-4098-ad07-e5d599c2ae3b");
-        assertEquals("2024-01-10", order.getStartTime().toString());
+        assertEquals(LocalDate.now().toString(), order.getStartTime().toString());
         assertNull(order.getDeliverTime());
     }
 
@@ -300,8 +301,6 @@ public class OrderDaoImplementationTest {
         orderDao.userReceiveProduct("15aeafa1-2561-4098-ad07-e5d599c2ae3b");
         Order order = orderDao.getOrderByOrderId("15aeafa1-2561-4098-ad07-e5d599c2ae3b");
         assertEquals("2024-01-01", order.getStartTime().toString());
-        assertEquals("2024-01-10", order.getDeliverTime().toString());
+        assertEquals(LocalDate.now().toString(), order.getDeliverTime().toString());
     }
-
-
 }
