@@ -6,14 +6,14 @@ import com.calvinwan.shopeehomebackend.mapper.ShopRowMapper;
 import com.calvinwan.shopeehomebackend.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@Component
+@Repository
 public class ShopDaoImplementation implements ShopDao {
 
     @Autowired
