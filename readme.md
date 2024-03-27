@@ -8,6 +8,8 @@ Shopee home is a web application that allows users to shop online. It provides a
     - [shopeehome-frontend-user](https://github.com/CalvinWan0101/ShopeeHome-frontend-user)
 - Backend
     - [shopeehome-backend](https://github.com/CalvinWan0101/ShopeeHome-backend)
+    - [API](https://docs.google.com/spreadsheets/d/1W-Uq1k9X8QTFEQBRANpnaXJV6QCcKX9wi-mXsyMchJ8/edit?usp=sharing)
+
 
 ### Features
 | User Actions        | Shop Actions         | Admin Actions       |
@@ -26,8 +28,6 @@ Shopee home is a web application that allows users to shop online. It provides a
 |                     | View order detail    |                     |
 |                     | View order list      |                     |
 |                     | View order detail    |                     |
-
-
 
 ### Entity-Relationship (ER) Model
 ![](./image/entity_relationship_model.jpg)
