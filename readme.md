@@ -52,7 +52,7 @@ Shopee home is a web application that allows users to shop online. It provides a
 
 ### Execution
 
-5. Use intellij to open the folder (ShopeeHome-backend)
+1. Use intellij to open the folder (ShopeeHome-backend)
     - maven install
         
         ![](./image/intellij/maven_install.png)
@@ -67,19 +67,19 @@ Shopee home is a web application that allows users to shop online. It provides a
         ![](./image/intellij/database_2.png)
         ![](./image/intellij/database_3.png)
         
-6. Find out the create.sql file and manually create the table
+1. Find out the create.sql file and manually create the table
     ![](./image/intellij/create_database.png)
 
     
-7. Run all tests to ensure the backend is working properly
+1. Run all tests to ensure the backend is working properly
     
     ![](./image/intellij/test_1.png)
 
     ![](./image/intellij/test_2.png)
 
     
-8. Run TestDataGenerator to generate demo data
+1. Run TestDataGenerator to generate demo data
     ![](./image/intellij/test_data.png)
     
-9. Execute the backend
+1. Execute the backend
     ![](./image/intellij/run.png)
