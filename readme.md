@@ -1,7 +1,7 @@
 # ShopeeHome
 
 ## Introduction
-Shopee home is a web application that allows users to shop online. It provides a platform for users to register, login, view products, add products to the cart, and checkout. It also provides a platform for shop owners to register, login, add products, view orders, and view order details. The admin can view the user list, view the user detail, view the shop list, view the shop detail, remove the user, and remove the shop.
+Shopee home is a web application that allows users to shop online. It is a practice project provides a platform for users to register, login, view products, add products to the cart, and checkout. It also provides a platform for shop owners to register, login, add products, view orders, and view order details. The admin can view the user list, view the user detail, view the shop list, view the shop detail, remove the user, and remove the shop.
 
 - Frontend
     - [shopeehome-frontend-shop](https://github.com/CalvinWan0101/ShopeeHome-frontend-shop)
