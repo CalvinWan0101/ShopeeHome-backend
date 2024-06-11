@@ -11,8 +11,7 @@ import tw.teddysoft.ezspec.EzFeature;
 import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @EzFeature
 @SpringBootTest
@@ -34,6 +33,7 @@ public class AdminDaoImplementationSpec {
     @EzScenario
     public void get_by_id() {
         feature.newScenario("Get admin by ID")
+                .withRule("Get admin")
                 .Given("an admin ID", env -> {
                     env.put("id", "17335ce6-af7c-4c21-af55-9eca9dc5dfb7");
                 })
@@ -51,8 +51,26 @@ public class AdminDaoImplementationSpec {
     }
 
     @EzScenario
+    public void get_by_id_not_found() {
+        feature.newScenario("Get admin by ID not found")
+                .withRule("Get admin")
+                .Given("an invalid admin ID", env -> {
+                    env.put("id", "invalid-id");
+                })
+                .When("I retrieve the admin by ID", env -> {
+                    env.put("admin", adminDao.getById((env.gets("id"))));
+                })
+                .ThenSuccess(env -> {
+                    Admin admin = env.get("admin", Admin.class);
+                    assertNull(admin);
+                })
+                .Execute();
+    }
+
+    @EzScenario
     public void get_by_name() {
         feature.newScenario("Get admin by name")
+                .withRule("Get admin")
                 .Given("an admin name", env -> {
                     env.put("name", "admin");
                 })
@@ -65,6 +83,23 @@ public class AdminDaoImplementationSpec {
                     assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", admin.getId());
                     assertEquals("admin", admin.getName());
                     assertEquals(DigestUtils.md5DigestAsHex("admin".getBytes()), admin.getPassword());
+                })
+                .Execute();
+    }
+
+    @EzScenario
+    public void get_by_name_not_found() {
+        feature.newScenario("Get admin by name not found")
+                .withRule("Get admin")
+                .Given("an invalid admin name", env -> {
+                    env.put("name", "invalid-name");
+                })
+                .When("I retrieve the admin by name", env -> {
+                    env.put("admin", adminDao.getByName((env.gets("name"))));
+                })
+                .ThenSuccess(env -> {
+                    Admin admin = env.get("admin", Admin.class);
+                    assertNull(admin);
                 })
                 .Execute();
     }

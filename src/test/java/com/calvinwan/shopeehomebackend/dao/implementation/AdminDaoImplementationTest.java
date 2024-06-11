@@ -29,7 +29,13 @@ public class AdminDaoImplementationTest {
     }
 
     @Test
-    public void get_by_name(){
+    public void get_by_id_not_found() {
+        Admin admin = adminDao.getById("invalid-id");
+        assertNull(admin);
+    }
+
+    @Test
+    public void get_by_name() {
         Admin admin = adminDao.getByName("admin");
         String hashedPassword = DigestUtils.md5DigestAsHex("admin".getBytes());
 
@@ -37,5 +43,11 @@ public class AdminDaoImplementationTest {
         assertEquals("17335ce6-af7c-4c21-af55-9eca9dc5dfb7", admin.getId());
         assertEquals("admin", admin.getName());
         assertEquals(hashedPassword, admin.getPassword());
+    }
+
+    @Test
+    public void get_by_name_not_found() {
+        Admin admin = adminDao.getByName("invalid-name");
+        assertNull(admin);
     }
 }
