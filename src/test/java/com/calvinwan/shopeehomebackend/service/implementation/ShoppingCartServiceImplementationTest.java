@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Sql(scripts = "/database/data.sql")
@@ -38,14 +40,16 @@ public class ShoppingCartServiceImplementationTest {
         ShoppingCartProduct product1;
         ShoppingCartProduct product2;
 
-        product1 = shop1.getProducts().get(0);
+        List<ShoppingCartProduct> products = shop1.getProducts();
+        products.stream().sorted((p1, p2) -> p1.getId().compareTo(p2.getId())).toList();
+        product1 = products.get(0);
         assertEquals("6874ada1-747f-41a7-bb9a-613d2ec0ce1d", product1.getId());
         assertEquals("iphone", product1.getName());
         assertEquals("iphone_image_1", product1.getImage());
         assertEquals(1, product1.getQuantity());
         assertEquals(90, product1.getQuantityLimit());
         assertEquals(32103, product1.getPrice());
-        product2 = shop1.getProducts().get(1);
+        product2 = products.get(1);
         assertEquals("8c883a21-fad1-43af-8b15-54b2c1c7a70e", product2.getId());
         assertEquals("xiaomi", product2.getName());
         assertEquals("xiaomi_image_1", product2.getImage());
@@ -53,14 +57,16 @@ public class ShoppingCartServiceImplementationTest {
         assertEquals(140, product2.getQuantityLimit());
         assertEquals(17999, product2.getPrice());
 
-        product1 = shop2.getProducts().get(0);
+        products = shop2.getProducts();
+        products.stream().sorted((p1, p2) -> p1.getId().compareTo(p2.getId())).toList();
+        product1 = products.get(0);
         assertEquals("acbe9e99-76db-4b1f-a9f4-3fe850c3d3f3", product1.getId());
         assertEquals("tissue", product1.getName());
         assertEquals("tissue_image_1", product1.getImage());
         assertEquals(3, product1.getQuantity());
         assertEquals(52123, product1.getQuantityLimit());
         assertEquals(100, product1.getPrice());
-        product2 = shop2.getProducts().get(1);
+        product2 = products.get(1);
         assertEquals("9595f97a-bf11-488a-8c15-9edf4db1c450", product2.getId());
         assertEquals("toothbrush", product2.getName());
         assertEquals("toothbrush_image_1", product2.getImage());
