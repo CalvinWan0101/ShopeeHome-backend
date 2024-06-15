@@ -125,8 +125,8 @@ public class SeasoningCouponDaoImplementation implements SeasoningCouponDao {
                 "FROM coupon c " +
                 "JOIN seasoning_coupon s ON c.id = s.coupon_id " +
                 "LEFT JOIN user_has_coupon uc ON c.id = uc.coupon_id AND uc.user_id = :userId " +
-                "WHERE c.shop_id = :shopId AND c.is_deleted = false AND c.date >= CURRENT_DATE" +
-                " ORDER BY s.rate ASC";
+                "WHERE c.shop_id = :shopId AND c.is_deleted = false AND c.date >= CURRENT_DATE " +
+                "ORDER BY s.rate ASC";
         Map<String, Object> map = new HashMap<>();
         map.put("shopId", shopId);
         map.put("userId", userId);
