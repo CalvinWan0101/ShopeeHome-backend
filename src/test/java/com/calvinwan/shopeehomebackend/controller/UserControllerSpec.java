@@ -1,7 +1,6 @@
 package com.calvinwan.shopeehomebackend.controller;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +11,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -38,7 +38,7 @@ public class UserControllerSpec {
         feature.NewRule("User Login");
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void register() {
         feature.newScenario("Register user").withRule("Register User")
@@ -88,7 +88,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id() {
         feature.newScenario("Get user by ID").withRule("Get User by ID")
                 .Given("an existing user ID", env -> {
@@ -123,7 +123,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_by_id() {
         feature.newScenario("Update user by ID").withRule("Update User by ID")
@@ -173,7 +173,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void delete_by_id() {
         feature.newScenario("Delete user by ID").withRule("Delete User by ID")
@@ -201,7 +201,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void login_success() {
         feature.newScenario("Login success").withRule("User Login")
                 .Given("a user's correct email and password", env -> {
@@ -234,7 +234,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void login_with_not_exist_email() {
         feature.newScenario("Login with non-existent email").withRule("User Login")
                 .Given("a user's non-existent email", env -> {
@@ -267,7 +267,7 @@ public class UserControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void login_with_wrong_password() {
         feature.newScenario("Login with wrong password").withRule("User Login")
                 .Given("a user's correct email and wrong password", env -> {

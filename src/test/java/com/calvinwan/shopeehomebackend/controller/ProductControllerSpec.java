@@ -1,7 +1,6 @@
 package com.calvinwan.shopeehomebackend.controller;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +12,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,7 +39,7 @@ public class ProductControllerSpec {
         feature.NewRule("Delete Product by ID");
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void insert() {
         feature.newScenario("Insert product").withRule("Insert Product")
@@ -95,7 +95,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id() {
         feature.newScenario("Get product by ID").withRule("Get Product by ID")
                 .Given("an existing product ID", env -> {
@@ -134,7 +134,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id_not_found() {
         feature.newScenario("Get product by non-existent ID").withRule("Get Product by ID")
                 .Given("a non-existent product ID", env -> {
@@ -161,7 +161,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_id_by_name() {
         feature.newScenario("Get product ID by name").withRule("Get Product by Name")
                 .Given("an existing product name", env -> {
@@ -189,7 +189,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_id_by_name_with_uncompleted_name() {
         feature.newScenario("Get product ID by incomplete name").withRule("Get Product by Name")
                 .Given("an incomplete product name", env -> {
@@ -219,7 +219,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_id_by_name_not_found() {
         feature.newScenario("Get product ID by non-existent name").withRule("Get Product by Name")
                 .Given("a non-existent product name", env -> {
@@ -246,7 +246,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_all_name() {
         feature.newScenario("Get all product names").withRule("Get Product by Name")
                 .Given("a request to get all product names", env -> {
@@ -281,7 +281,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_all_name_by_shop_id() {
         feature.newScenario("Get all product names by shop ID").withRule("Get Product by Name")
                 .Given("a shop ID", env -> {
@@ -312,7 +312,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_product_preview_by_id() {
         feature.newScenario("Get product preview by ID").withRule("Get Product by ID")
                 .Given("a product ID", env -> {
@@ -343,7 +343,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_product_preview_by_id_not_found() {
         feature.newScenario("Get product preview by non-existent ID").withRule("Get Product by ID")
                 .Given("a non-existent product ID", env -> {
@@ -370,7 +370,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_product_by_id() {
         feature.newScenario("Update product by ID").withRule("Update Product by ID")
@@ -425,7 +425,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_product_by_id_not_found() {
         feature.newScenario("Update product by non-existent ID").withRule("Update Product by ID")
@@ -469,7 +469,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_product_sales_by_id() {
         feature.newScenario("Update product sales by ID").withRule("Update Product Sales by ID")
@@ -499,7 +499,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_product_sales_by_id_not_found() {
         feature.newScenario("Update product sales by non-existent ID").withRule("Update Product Sales by ID")
@@ -529,7 +529,7 @@ public class ProductControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void delete_product_by_id() {
         feature.newScenario("Delete product by ID").withRule("Delete Product by ID")

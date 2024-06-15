@@ -1,7 +1,6 @@
 package com.calvinwan.shopeehomebackend.controller;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +11,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -38,7 +38,7 @@ public class ShopControllerSpec {
         feature.NewRule("Shop Login");
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void register() {
         feature.newScenario("Register shop").withRule("Register Shop")
@@ -89,7 +89,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void get_by_id() {
         feature.newScenario("Get shop by ID").withRule("Get Shop by ID")
@@ -127,7 +127,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_by_id() {
         feature.newScenario("Update shop by ID").withRule("Update Shop by ID")
@@ -180,7 +180,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void delete_by_id() {
         feature.newScenario("Delete shop by ID").withRule("Delete Shop by ID")
@@ -208,7 +208,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void login_success() {
         feature.newScenario("Login success").withRule("Shop Login")
@@ -242,7 +242,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void login_with_not_exist_email() {
         feature.newScenario("Login with non-existent email").withRule("Shop Login")
@@ -276,7 +276,7 @@ public class ShopControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void login_with_wrong_password() {
         feature.newScenario("Login with wrong password").withRule("Shop Login")

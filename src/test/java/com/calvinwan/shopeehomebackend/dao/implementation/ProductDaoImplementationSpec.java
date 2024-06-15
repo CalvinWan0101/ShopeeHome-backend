@@ -5,11 +5,11 @@ import com.calvinwan.shopeehomebackend.dto.product.ProductDto;
 import com.calvinwan.shopeehomebackend.dto.product.ProductNameDto;
 import com.calvinwan.shopeehomebackend.model.Product;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import java.sql.Date;
@@ -41,7 +41,7 @@ public class ProductDaoImplementationSpec {
         feature.NewRule("Delete Product by ID");
     }
 
-    @Test
+    @EzScenario
     public void get_by_id_iphone() {
         feature.newScenario("Get iPhone by ID").withRule("Get Product by ID")
                 .Given("an iPhone product ID", env -> {
@@ -68,7 +68,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id_xiaomi() {
         feature.newScenario("Get Xiaomi by ID").withRule("Get Product by ID")
                 .Given("a Xiaomi product ID", env -> {
@@ -95,7 +95,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id_tissue() {
         feature.newScenario("Get Tissue by ID").withRule("Get Product by ID")
                 .Given("a Tissue product ID", env -> {
@@ -122,7 +122,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_id_toothbrush() {
         feature.newScenario("Get Toothbrush by ID").withRule("Get Product by ID")
                 .Given("a Toothbrush product ID", env -> {
@@ -149,7 +149,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_name() {
         feature.newScenario("Get Products by Name").withRule("Get Product by Name")
                 .Given("a partial product name", env -> {
@@ -168,7 +168,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_id_by_name_deleted() {
         feature.newScenario("Get Deleted Product by Name").withRule("Get Product by Name")
                 .Given("a deleted product name", env -> {
@@ -184,7 +184,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_id_by_name_not_found() {
         feature.newScenario("Get Non-existent Product by Name").withRule("Get Product by Name")
                 .Given("a non-existent product name", env -> {
@@ -200,7 +200,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_all_name_by_id() {
         feature.newScenario("Get All Product Names by ID").withRule("Get All Product Names")
                 .When("I retrieve all product names", env -> {
@@ -221,7 +221,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_all_name_by_shop_id() {
         feature.newScenario("Get All Product Names by Shop ID").withRule("Get All Product Names")
                 .Given("a shop ID", env -> {
@@ -241,7 +241,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void insert() {
         feature.newScenario("Insert Product").withRule("Insert Product")
@@ -286,7 +286,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_by_id() {
         feature.newScenario("Update Product by ID").withRule("Update Product by ID")
@@ -331,7 +331,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_sales_by_id() {
         feature.newScenario("Update Product Sales by ID").withRule("Update Product Sales by ID")
@@ -351,7 +351,7 @@ public class ProductDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void delete_by_id() {
         feature.newScenario("Delete Product by ID").withRule("Delete Product by ID")

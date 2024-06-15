@@ -5,11 +5,11 @@ import com.calvinwan.shopeehomebackend.dto.coupon.shipping.ShippingCouponDto;
 import com.calvinwan.shopeehomebackend.dto.coupon.shipping.ShippingCouponUserDto;
 import com.calvinwan.shopeehomebackend.model.coupon.ShippingCoupon;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import java.sql.Date;
@@ -38,7 +38,7 @@ public class ShippingCouponDaoImplementationSpec {
         feature.NewRule("User Claim Coupon");
     }
 
-    @Test
+    @EzScenario
     public void get_by_id() {
         feature.newScenario("Get Shipping Coupon by ID").withRule("Get Shipping Coupon by ID")
                 .Given("a shipping coupon ID", env -> {
@@ -58,7 +58,7 @@ public class ShippingCouponDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void shop_get_by_shop_id() {
         feature.newScenario("Shop Get Shipping Coupons by Shop ID").withRule("Shop Get Shipping Coupons by Shop ID")
                 .Given("a shop ID", env -> {
@@ -77,7 +77,7 @@ public class ShippingCouponDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void user_get_by_shop_id() {
         feature.newScenario("User Get Shipping Coupons by Shop ID").withRule("User Get Shipping Coupons by Shop ID")
                 .Given("a user ID and a shop ID", env -> {
@@ -106,7 +106,7 @@ public class ShippingCouponDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void shop_create_coupon() {
         feature.newScenario("Shop Create Coupon").withRule("Shop Create Coupon")
@@ -134,7 +134,7 @@ public class ShippingCouponDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void shop_update_coupon_by_id() {
         feature.newScenario("Shop Update Coupon by ID").withRule("Shop Update Coupon by ID")
@@ -163,7 +163,7 @@ public class ShippingCouponDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void user_claim_coupon() {
         feature.newScenario("User Claim Coupon").withRule("User Claim Coupon")

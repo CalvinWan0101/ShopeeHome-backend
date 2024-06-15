@@ -4,12 +4,12 @@ import com.calvinwan.shopeehomebackend.dao.ShopDao;
 import com.calvinwan.shopeehomebackend.dto.shop.ShopDto;
 import com.calvinwan.shopeehomebackend.model.Shop;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +33,7 @@ public class ShopDaoImplementationSpec {
         feature.NewRule("Update Shop by ID");
     }
 
-    @Test
+    @EzScenario
     public void get_by_id() {
         feature.newScenario("Get Shop by ID").withRule("Get Shop by ID")
                 .Given("a shop ID", env -> {
@@ -62,7 +62,7 @@ public class ShopDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void get_by_email() {
         feature.newScenario("Get Shop by Email").withRule("Get Shop by Email")
                 .Given("a shop email", env -> {
@@ -91,7 +91,7 @@ public class ShopDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void insert() {
         feature.newScenario("Insert Shop").withRule("Insert Shop")
@@ -134,7 +134,7 @@ public class ShopDaoImplementationSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     @Transactional
     public void update_by_id() {
         feature.newScenario("Update Shop by ID").withRule("Update Shop by ID")

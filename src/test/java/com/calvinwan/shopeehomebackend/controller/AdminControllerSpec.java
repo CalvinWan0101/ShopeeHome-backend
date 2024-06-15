@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import tw.teddysoft.ezspec.extension.junit5.EzScenario;
 import tw.teddysoft.ezspec.keyword.Feature;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,7 +29,7 @@ public class AdminControllerSpec {
         feature.NewRule("Login");
     }
 
-    @Test
+    @EzScenario
     public void login_success() {
         feature.newScenario("Login success").withRule("Login")
                 .Given("an admin's credentials", env -> {
@@ -53,7 +54,7 @@ public class AdminControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void login_with_not_exist_name() {
         feature.newScenario("Login with non-existent name").withRule("Login")
                 .Given("non-existent admin's credentials", env -> {
@@ -78,7 +79,7 @@ public class AdminControllerSpec {
                 .Execute();
     }
 
-    @Test
+    @EzScenario
     public void login_with_wrong_password() {
         feature.newScenario("Login with wrong password").withRule("Login")
                 .Given("admin's credentials with wrong password", env -> {
