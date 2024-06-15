@@ -30,64 +30,76 @@ public class AdminControllerSpec {
 
     @Test
     public void login_success() {
-        feature.newScenario("Login success").withRule("Login").Given("an admin's credentials", env -> {
-            env.put("name", "admin");
-            env.put("password", "admin");
-        }).When("I send a login request", env -> {
-            RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
-                    {
-                    "name": "%s",
-                    "password": "%s"
-                    }""", env.gets("name"), env.gets("password")));
-            env.put("requestBuilder", requestBuilder);
-        }).ThenSuccess(env -> {
-            try {
-                mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(200)).andReturn();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).Execute();
+        feature.newScenario("Login success").withRule("Login")
+                .Given("an admin's credentials", env -> {
+                    env.put("name", "admin");
+                    env.put("password", "admin");
+                })
+                .When("I send a login request", env -> {
+                    RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
+                            {
+                            "name": "%s",
+                            "password": "%s"
+                            }""", env.gets("name"), env.gets("password")));
+                    env.put("requestBuilder", requestBuilder);
+                })
+                .ThenSuccess(env -> {
+                    try {
+                        mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(200)).andReturn();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .Execute();
     }
 
     @Test
     public void login_with_not_exist_name() {
-        feature.newScenario("Login with non-existent name").withRule("Login").Given("non-existent admin's credentials", env -> {
-            env.put("name", "wrong");
-            env.put("password", "admin");
-        }).When("I send a login request", env -> {
-            RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
-                    {
-                    "name": "%s",
-                    "password": "%s"
-                    }""", env.gets("name"), env.gets("password")));
-            env.put("requestBuilder", requestBuilder);
-        }).ThenSuccess(env -> {
-            try {
-                mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(400)).andReturn();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).Execute();
+        feature.newScenario("Login with non-existent name").withRule("Login")
+                .Given("non-existent admin's credentials", env -> {
+                    env.put("name", "wrong");
+                    env.put("password", "admin");
+                })
+                .When("I send a login request", env -> {
+                    RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
+                            {
+                            "name": "%s",
+                            "password": "%s"
+                            }""", env.gets("name"), env.gets("password")));
+                    env.put("requestBuilder", requestBuilder);
+                })
+                .ThenSuccess(env -> {
+                    try {
+                        mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(400)).andReturn();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .Execute();
     }
 
     @Test
     public void login_with_wrong_password() {
-        feature.newScenario("Login with wrong password").withRule("Login").Given("admin's credentials with wrong password", env -> {
-            env.put("name", "admin");
-            env.put("password", "wrong");
-        }).When("I send a login request", env -> {
-            RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
-                    {
-                    "name": "%s",
-                    "password": "%s"
-                    }""", env.gets("name"), env.gets("password")));
-            env.put("requestBuilder", requestBuilder);
-        }).ThenSuccess(env -> {
-            try {
-                mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(400)).andReturn();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).Execute();
+        feature.newScenario("Login with wrong password").withRule("Login")
+                .Given("admin's credentials with wrong password", env -> {
+                    env.put("name", "admin");
+                    env.put("password", "wrong");
+                })
+                .When("I send a login request", env -> {
+                    RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/admin/login").contentType(MediaType.APPLICATION_JSON).content(String.format("""
+                            {
+                            "name": "%s",
+                            "password": "%s"
+                            }""", env.gets("name"), env.gets("password")));
+                    env.put("requestBuilder", requestBuilder);
+                })
+                .ThenSuccess(env -> {
+                    try {
+                        mockMvc.perform(env.get("requestBuilder", RequestBuilder.class)).andExpect(status().is(400)).andReturn();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .Execute();
     }
 }

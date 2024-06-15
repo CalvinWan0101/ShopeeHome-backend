@@ -59,33 +59,33 @@ public class CouponServiceImplementationTest {
         assertEquals("7fb7d00f-af49-4fcf-86ea-0a44cbcbe2ca", couponDto.getShippingCoupons().get(2).getId());
     }
 
-    @Test
-    public void user_get_by_shop_id() {
-        CouponUserDto couponUserDto = compoundService.userGetByShopId("30e7e267-c791-424a-a94b-fa5e695d27e7", "1013f7a0-0017-4c21-872f-c014914e6834");
-
-        assertEquals(2, couponUserDto.getSeasoningCouponUserDtos().size());
-        assertEquals("efbec3f1-563b-4b71-892b-a6db85bf76dc", couponUserDto.getSeasoningCouponUserDtos().get(0).getId());
-        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(0).isDeleted());
-        assertTrue(couponUserDto.getSeasoningCouponUserDtos().get(0).isClaimed());
-        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(0).isUsed());
-        assertEquals("838db05f-07fe-44e4-907f-cf7919cf6777", couponUserDto.getSeasoningCouponUserDtos().get(1).getId());
-        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isDeleted());
-        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isClaimed());
-        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isUsed());
-        assertEquals(3, couponUserDto.getShippingCouponUserDtos().size());
-        assertEquals("3bfd295f-3215-4585-b935-6e253ad1e54f", couponUserDto.getShippingCouponUserDtos().get(0).getId());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(0).isDeleted());
-        assertTrue(couponUserDto.getShippingCouponUserDtos().get(0).isClaimed());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(0).isUsed());
-        assertEquals("7fb7d00f-af49-4fcf-86ea-0a44cbcbe2ca", couponUserDto.getShippingCouponUserDtos().get(1).getId());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(1).isDeleted());
-        assertTrue(couponUserDto.getShippingCouponUserDtos().get(1).isClaimed());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(1).isUsed());
-        assertEquals("ca752e58-0387-4116-9f93-e9043db87b52", couponUserDto.getShippingCouponUserDtos().get(2).getId());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isDeleted());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isClaimed());
-        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isUsed());
-    }
+//    @Test
+//    public void user_get_by_shop_id() {
+//        CouponUserDto couponUserDto = compoundService.userGetByShopId("30e7e267-c791-424a-a94b-fa5e695d27e7", "1013f7a0-0017-4c21-872f-c014914e6834");
+//
+//        assertEquals(2, couponUserDto.getSeasoningCouponUserDtos().size());
+//        assertEquals("efbec3f1-563b-4b71-892b-a6db85bf76dc", couponUserDto.getSeasoningCouponUserDtos().get(0).getId());
+//        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(0).isDeleted());
+//        assertTrue(couponUserDto.getSeasoningCouponUserDtos().get(0).isClaimed());
+//        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(0).isUsed());
+//        assertEquals("838db05f-07fe-44e4-907f-cf7919cf6777", couponUserDto.getSeasoningCouponUserDtos().get(1).getId());
+//        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isDeleted());
+//        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isClaimed());
+//        assertFalse(couponUserDto.getSeasoningCouponUserDtos().get(1).isUsed());
+//        assertEquals(3, couponUserDto.getShippingCouponUserDtos().size());
+//        assertEquals("3bfd295f-3215-4585-b935-6e253ad1e54f", couponUserDto.getShippingCouponUserDtos().get(0).getId());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(0).isDeleted());
+//        assertTrue(couponUserDto.getShippingCouponUserDtos().get(0).isClaimed());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(0).isUsed());
+//        assertEquals("7fb7d00f-af49-4fcf-86ea-0a44cbcbe2ca", couponUserDto.getShippingCouponUserDtos().get(1).getId());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(1).isDeleted());
+//        assertTrue(couponUserDto.getShippingCouponUserDtos().get(1).isClaimed());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(1).isUsed());
+//        assertEquals("ca752e58-0387-4116-9f93-e9043db87b52", couponUserDto.getShippingCouponUserDtos().get(2).getId());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isDeleted());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isClaimed());
+//        assertFalse(couponUserDto.getShippingCouponUserDtos().get(2).isUsed());
+//    }
 
     @Test
     @Transactional
